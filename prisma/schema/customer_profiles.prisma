@@ -1,0 +1,20 @@
+model Customer {
+  id             String   @id @default(uuid())
+  user_id        String
+  first_name     String
+  middle_name    String?
+  last_name      String
+  date_of_birth  DateTime
+  address_line_1 String
+  address_line_2 String?
+  city           String
+  region         String?
+  country_code   String
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt()
+
+  accountHolder    Account_Holder @relation(fields: [account_HolderId], references: [id])
+  ledger_account   Ledger_Account @relation(fields: [ledger_AccountId], references: [id])
+  account_HolderId String
+  ledger_AccountId String
+}

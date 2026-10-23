@@ -1,0 +1,27 @@
+model Ledger_Account {
+  id                String                @id @default(uuid())
+  code              String
+  name              String
+  account_type      Account_Type
+  currency_code     String
+  bank_account_id   String?
+  is_system_account Boolean
+  status            Ledger_Account_Status
+  created_at        DateTime              @default(now())
+
+  bankAccount Bank_Account? @relation(fields: [bank_account_id], references: [id])
+  customers   Customer[]
+}
+
+enum Ledger_Account_Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum Account_Type {
+  ASSET
+  LIABILITY
+  EQUITY
+  REVENUE
+  EXPENSE
+}

@@ -1,0 +1,34 @@
+model Session {
+  id           String    @id @default(uuid())
+  user_id      String
+  device_label String?
+  ip_address   String?
+  user_agent   String?
+  created_at   DateTime  @default(now())
+  last_seen_at DateTime  @default(now())
+  expires_at   DateTime
+  revoked_at   DateTime?
+
+  user          User            @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  refreshTokens refresh_token[]
+
+  @@index([user_id])
+  @@index([expires_at])
+}
+
+model refresh_token {
+  id         String    @id @default(uuid())
+  session_id String
+  token_hash String    @unique
+  family_id  String
+  expires_at DateTime
+  used_at    DateTime?
+  revoked_at DateTime?
+  created_at DateTime  @default(now())
+
+  session Session @relation(fields: [session_id], references: [id], onDelete: Cascade)
+
+  @@index([family_id])
+  @@index([session_id])
+  @@index([expires_at])
+}

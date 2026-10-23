@@ -1,0 +1,38 @@
+model Kyc_Case {
+  id           String     @id @default(uuid())
+  customer_id  String
+  status       KYC_Status @default(NOT_STARTED)
+  submitted_at DateTime?
+  reviewed_by  String
+
+  review_by    User           @relation(fields: [reviewed_by], references: [id], onDelete: Cascade)
+  kycDocuments Kyc_Document[]
+}
+
+enum KYC_Status {
+  NOT_STARTED
+  PENDING_VERIFICATION
+  UNDER_REVIEW
+  VERIFIED
+  REJECTED
+  MORE_INFO_REQUIRED
+}
+
+model Kyc_Document {
+  id                      String         @id @default(uuid())
+  kyc_case_id             String
+  document_type           String
+  storage_key             String
+  document_reference_hash String
+  status                  KYC_DOC_Status
+  uploaded_at             DateTime
+  reviewed_at             DateTime?
+
+  kyc_case Kyc_Case @relation(fields: [kyc_case_id], references: [id])
+}
+
+enum KYC_DOC_Status {
+  SUBMITTED
+  ACCEPTED
+  REJECTED
+}

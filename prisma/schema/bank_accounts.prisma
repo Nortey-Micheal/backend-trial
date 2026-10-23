@@ -1,0 +1,50 @@
+model Bank_Account {
+  id             String         @id @default(uuid())
+  account_number String
+  account        AccountType
+  currency_code  String
+  status         Account_Status
+  opened_at      DateTime?
+  closed_at      DateTime?
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @updatedAt()
+
+  accountHolders Account_Holder[]
+  ledgerAccounts Ledger_Account[]
+
+  outgoing_transactions Transaction[] @relation("TransactionSource")
+  incoming_transactions Transaction[] @relation("TransactionDestination")
+}
+
+model Account_Holder {
+  id                String                      @id @default(uuid())
+  account_id        String
+  customer_id       String
+  relationship_type Account_Holder_Relationship
+  can_view          Boolean                     @default(true)
+  can_transact      Boolean                     @default(true)
+  started_at        DateTime
+  ended_at          DateTime?
+
+  account   Bank_Account @relation(fields: [account_id], references: [id])
+  customers Customer[]
+}
+
+enum Account_Holder_Relationship {
+  OWNER
+  JOINT_OWNER
+  AUTHORIZED_SIGNATORY
+}
+
+enum Account_Status {
+  PENDING_VERIFICATION
+  ACTIVE
+  FROZEN
+  RESTRICTED
+  CLOSED
+}
+
+enum AccountType {
+  SAVINGS
+  CURRENT
+}
