@@ -9,8 +9,9 @@ model Ledger_Account {
   status            Ledger_Account_Status
   created_at        DateTime              @default(now())
 
-  bankAccount Bank_Account? @relation(fields: [bank_account_id], references: [id])
-  customers   Customer[]
+  bankAccount    Bank_Account?     @relation(fields: [bank_account_id], references: [id])
+  customers      Customer[]
+  ledgerPostings Ledger_Postings[]
 }
 
 enum Ledger_Account_Status {

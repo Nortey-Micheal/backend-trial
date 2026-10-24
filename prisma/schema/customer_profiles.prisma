@@ -17,4 +17,5 @@ model Customer {
   ledger_account   Ledger_Account @relation(fields: [ledger_AccountId], references: [id])
   account_HolderId String
   ledger_AccountId String
+  beneficiaries    Beneficiary[]
 }

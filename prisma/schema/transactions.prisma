@@ -25,7 +25,9 @@ model Transaction {
 
   source_account Bank_Account? @relation("TransactionSource", fields: [source_account_id], references: [id], onDelete: Restrict)
 
-  destination_account Bank_Account? @relation("TransactionDestination", fields: [destination_account_id], references: [id], onDelete: Restrict)
+  destination_account Bank_Account?     @relation("TransactionDestination", fields: [destination_account_id], references: [id], onDelete: Restrict)
+  journalEntries      Journal_Entries[]
+  accountHolds        Account_Hold[]
 
   @@unique([initiated_by, idempotency_key])
   @@index([source_account_id, created_at])

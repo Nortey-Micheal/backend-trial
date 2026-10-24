@@ -13,9 +13,10 @@ model User {
   createdAt         DateTime  @default(now())
   updateAt          DateTime  @updatedAt
 
-  user_roles User_Roles[]
-  session    Session[]
-  kycCases   Kyc_Case[]
+  user_roles        User_Roles[]
+  session           Session[]
+  kycCases          Kyc_Case[]
+  transactionLimits Transaction_Limit[]
 }
 
 enum Status {

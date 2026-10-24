@@ -1,0 +1,30 @@
+model Account_Balance_Projection {
+  id                String   @id @default(uuid())
+  account_id        String
+  ledger_balance    Int      @db.Integer
+  available_balance Int      @db.Integer
+  updated_at        DateTime @updatedAt()
+
+  bankAccount Bank_Account @relation(fields: [account_id], references: [id])
+}
+
+model Account_Hold {
+  id             String              @id @default(uuid())
+  account_id     String
+  transaction_id String
+  amount         Int                 @db.Integer
+  status         Account_Hold_Status
+  expired_at     DateTime?
+  created_at     DateTime            @default(now())
+  released_at    DateTime?
+
+  account     Bank_Account @relation(fields: [account_id], references: [id])
+  transaction Transaction  @relation(fields: [transaction_id], references: [id])
+}
+
+enum Account_Hold_Status {
+  ACTIVE
+  RELEASED
+  CAPTURED
+  EXPIRED
+}

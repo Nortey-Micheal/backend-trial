@@ -1,0 +1,19 @@
+model Beneficiary {
+  id                         String             @id @default(uuid())
+  customer_id                String
+  beneficiary_name           String
+  bank_account_id            String?
+  external_account_reference String?            @db.VarChar(255)
+  bank_name                  String?            @db.VarChar(150)
+  status                     Beneficiary_Status
+  verified_at                DateTime?
+  created_at                 DateTime           @default(now())
+
+  customer Customer @relation(fields: [customer_id], references: [id])
+}
+
+enum Beneficiary_Status {
+  PENDING_VERIFICATION
+  ACTIVE
+  BLOCKED
+}

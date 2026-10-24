@@ -12,8 +12,10 @@ model Bank_Account {
   accountHolders Account_Holder[]
   ledgerAccounts Ledger_Account[]
 
-  outgoing_transactions Transaction[] @relation("TransactionSource")
-  incoming_transactions Transaction[] @relation("TransactionDestination")
+  outgoing_transactions     Transaction[]                @relation("TransactionSource")
+  incoming_transactions     Transaction[]                @relation("TransactionDestination")
+  accountBalanceProjections Account_Balance_Projection[]
+  accountHolds              Account_Hold[]
 }
 
 model Account_Holder {

@@ -1,0 +1,18 @@
+model Journal_Entries {
+  id                String                 @id @default(uuid())
+  transaction_id    String
+  journal_reference String                 @unique @db.VarChar(64)
+  status            Journal_Entries_Status
+  effective_at      DateTime
+  posted_at         DateTime?
+  created_at        DateTime               @default(now())
+
+  journalTransaction Transaction       @relation(fields: [transaction_id], references: [id])
+  ledgerPostings     Ledger_Postings[]
+}
+
+enum Journal_Entries_Status {
+  DRAFT
+  POSTED
+  REVERSED
+}

@@ -1,0 +1,17 @@
+model Ledger_Postings {
+  id                String   @id @default(uuid())
+  journal_entry_id  String
+  ledger_account_id String
+  side              Side
+  amount            Int      @db.Integer
+  currency_code     String   @db.VarChar(3)
+  created_at        DateTime @default(now())
+
+  journalEntry   Journal_Entries @relation(fields: [journal_entry_id], references: [id])
+  ledger_account Ledger_Account  @relation(fields: [ledger_account_id], references: [id])
+}
+
+enum Side {
+  DEBIT
+  CREDIT
+}

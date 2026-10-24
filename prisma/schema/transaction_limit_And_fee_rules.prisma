@@ -1,0 +1,42 @@
+model Transaction_Limit {
+  id                String                   @id @default(uuid())
+  account_type      Account_Type
+  transaction_type  Transaction_Type
+  currency_code     String                   @db.VarChar(3)
+  max_single_amount Int?                     @db.Integer
+  max_daily_amount  Int?                     @db.Integer
+  max_daily_count   Int?                     @db.Integer
+  status            Transaction_Limit_Status
+  created_by_id     String
+  created_at        DateTime                 @default(now())
+
+  created_by User @relation(fields: [created_by_id], references: [id])
+}
+
+enum Transaction_Limit_Status {
+  ACTIVE
+  INACTIVE
+}
+
+model Fee_Rule {
+  id               String           @id @default(uuid())
+  transaction_type Transaction_Type
+  currency_code    String           @db.VarChar(3)
+  fee_type         Fee_Type
+  fee_value        Int              @db.Integer
+  minimum_fee      Int?
+  maximum_fee      Int?
+  effective_from   DateTime
+  effective_until  DateTime?
+  status           Fee_Rule_Status
+}
+
+enum Fee_Rule_Status {
+  ACIVE
+  INACTIVE
+}
+
+enum Fee_Type {
+  FIXED
+  PERCENTAGE
+}
