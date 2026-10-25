@@ -29,8 +29,11 @@ model Account_Holder {
   started_at        DateTime
   ended_at          DateTime?
 
-  account   Bank_Account @relation(fields: [account_id], references: [id])
-  customers Customer[]
+  account  Bank_Account @relation(fields: [account_id], references: [id])
+  customer Customer     @relation(fields: [customer_id], references: [id])
+
+  @@unique([account_id, customer_id])
+  @@index([customer_id])
 }
 
 enum Account_Holder_Relationship {
