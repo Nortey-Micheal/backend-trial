@@ -13,10 +13,15 @@ model User {
   createdAt         DateTime  @default(now())
   updateAt          DateTime  @updatedAt
 
-  user_roles        User_Roles[]
-  session           Session[]
-  kycCases          Kyc_Case[]
-  transactionLimits Transaction_Limit[]
+  user_roles         User_Roles[]
+  session            Session[]
+  kycCases           Kyc_Case[]
+  transactionLimits  Transaction_Limit[]
+  auditLogs          Audit_Log[]
+  reviewCases        Review_Case[]
+  idempotencyKeys    Idempotency_Keys[]
+  notificaions       Notificaion[]
+  reconciliationRuns Reconciliation_Run[]
 }
 
 enum Status {

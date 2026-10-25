@@ -1,0 +1,47 @@
+model Fraud_Alert {
+  id             String             @id @default(uuid())
+  transaction_id String
+  rule_code      String             @db.VarChar(80)
+  severity       Severity
+  status         Fraud_Alert_Status
+  details        Json               @db.JsonB
+  created_at     DateTime           @default(now())
+  resolved_at    DateTime?
+
+  transaction Transaction   @relation(fields: [transaction_id], references: [id])
+  reviewCases Review_Case[]
+}
+
+enum Fraud_Alert_Status {
+  OPEN
+  UNDER_REVIEW
+  DISMISSED
+  CONFIRMED
+}
+
+enum Severity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+model Review_Case {
+  id             String             @id @default(uuid())
+  fraud_alert_id String
+  assigned_to    String
+  status         Review_Case_Status
+  resolution     String?            @db.Text
+  created_at     DateTime           @default(now())
+  resolved_at    DateTime?
+
+  fraud_alert Fraud_Alert @relation(fields: [fraud_alert_id], references: [id])
+  user        User        @relation(fields: [assigned_to], references: [id])
+}
+
+enum Review_Case_Status {
+  OPEN
+  IN_PROGRESS
+  ESCALATED
+  RESOLVED
+}

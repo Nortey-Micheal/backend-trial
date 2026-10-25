@@ -9,13 +9,14 @@ model Bank_Account {
   created_at     DateTime       @default(now())
   updated_at     DateTime       @updatedAt()
 
-  accountHolders Account_Holder[]
-  ledgerAccounts Ledger_Account[]
-
-  outgoing_transactions     Transaction[]                @relation("TransactionSource")
-  incoming_transactions     Transaction[]                @relation("TransactionDestination")
-  accountBalanceProjections Account_Balance_Projection[]
-  accountHolds              Account_Hold[]
+  accountHolders                  Account_Holder[]
+  ledgerAccounts                  Ledger_Account[]
+  outgoing_transactions           Transaction[]                @relation("TransactionSource")
+  incoming_transactions           Transaction[]                @relation("TransactionDestination")
+  accountBalanceProjections       Account_Balance_Projection[]
+  accountHolds                    Account_Hold[]
+  scheduledTransfersAsSource      Scheduled_Transfer[]         @relation("TransferSourceAccount")
+  scheduledTransfersAsDestination Scheduled_Transfer[]         @relation("TransferDestinationAccount")
 }
 
 model Account_Holder {

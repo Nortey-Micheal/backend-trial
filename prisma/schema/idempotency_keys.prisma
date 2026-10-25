@@ -1,0 +1,17 @@
+model Idempotency_Keys {
+  id              String   @id @default(uuid())
+  actor_user_id   String
+  operation       String   @db.VarChar(100)
+  key             String   @db.VarChar(128)
+  request_hash    String   @db.VarChar(128)
+  resource_id     String?
+  response_status Int?
+  resonse_body    Json     @db.JsonB
+  created_at      DateTime
+  expires_at      DateTime
+
+  actor_user   User          @relation(fields: [actor_user_id], references: [id])
+  transactions Transaction[]
+
+  @@unique([actor_user_id, operation, key])
+}

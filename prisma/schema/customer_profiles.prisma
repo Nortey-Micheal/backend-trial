@@ -13,9 +13,10 @@ model Customer {
   created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt()
 
-  accountHolder    Account_Holder @relation(fields: [account_HolderId], references: [id])
-  ledger_account   Ledger_Account @relation(fields: [ledger_AccountId], references: [id])
-  account_HolderId String
-  ledger_AccountId String
-  beneficiaries    Beneficiary[]
+  accountHolder      Account_Holder       @relation(fields: [account_HolderId], references: [id])
+  ledger_account     Ledger_Account       @relation(fields: [ledger_AccountId], references: [id])
+  account_HolderId   String
+  ledger_AccountId   String
+  beneficiaries      Beneficiary[]
+  scheduledTransfers Scheduled_Transfer[]
 }

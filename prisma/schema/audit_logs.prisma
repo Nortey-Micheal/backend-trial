@@ -1,0 +1,13 @@
+model Audit_Log {
+  id            String   @id @default(uuid())
+  actor_user_id String?
+  action        String   @db.VarChar(100)
+  entity_type   String   @db.VarChar(100)
+  entity_id     String
+  request_id    String
+  reason        String   @db.Text
+  metadata      Json     @db.JsonB
+  created_at    DateTime
+
+  actor_user User? @relation(fields: [actor_user_id], references: [id])
+}

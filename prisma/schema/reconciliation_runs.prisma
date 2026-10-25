@@ -1,0 +1,19 @@
+model Reconciliation_Run {
+  id                  String                    @id @default(uuid())
+  started_by          String?
+  status              Reconciliation_Run_Status
+  started_at          DateTime
+  completed_at        DateTime?
+  accounts_checked    Int
+  discrepancies_found Int
+  summary             Json                      @db.JsonB
+
+  startedBy User? @relation(fields: [started_by], references: [id])
+}
+
+enum Reconciliation_Run_Status {
+  RUNNING
+  COMPLETED
+  FAILED
+  DISCREPANCIES_FOUND
+}

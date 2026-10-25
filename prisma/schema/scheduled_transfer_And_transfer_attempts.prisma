@@ -1,0 +1,52 @@
+model Scheduled_Transfer {
+  id                     String                     @id @default(uuid())
+  customer_id            String
+  source_account_id      String
+  destination_account_id String
+  amount                 Int                        @db.Integer
+  currency_code          String                     @db.VarChar(3)
+  frequency              Frequency
+  next_run_at            DateTime
+  end_at                 DateTime?
+  status                 Scheduled_Transfers_Status
+  created_at             DateTime                   @default(now())
+
+  customer           Customer           @relation(fields: [customer_id], references: [id])
+  sourceAccount      Bank_Account       @relation("TransferSourceAccount", fields: [source_account_id], references: [id])
+  destinationAccount Bank_Account       @relation("TransferDestinationAccount", fields: [destination_account_id], references: [id])
+  transferAttempts   Transfer_Attempt[]
+}
+
+enum Scheduled_Transfers_Status {
+  ACTIVE
+  PAUSED
+  COMPLETED
+  CANCELLED
+}
+
+enum Frequency {
+  ONCE
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+model Transfer_Attempt {
+  id                    String                   @id @default(uuid())
+  scheduled_transfer_id String
+  transaction_id        String
+  attempt_number        Int
+  status                Transfer_Attempts_Status
+  started_at            DateTime
+  finished_at           DateTime?
+  failure_code          String?                  @db.VarChar(100)
+
+  scheduled_transfer Scheduled_Transfer @relation(fields: [scheduled_transfer_id], references: [id])
+  transaction        Transaction        @relation(fields: [transaction_id], references: [id])
+}
+
+enum Transfer_Attempts_Status {
+  PROCESSING
+  SUCCEEDED
+  FAILED
+}
