@@ -22,6 +22,7 @@ model User {
   idempotencyKeys    Idempotency_Keys[]
   notificaions       Notificaion[]
   reconciliationRuns Reconciliation_Run[]
+  customers          Customer[]
 }
 
 enum Status {
