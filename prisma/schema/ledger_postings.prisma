@@ -3,12 +3,14 @@ model Ledger_Postings {
   journal_entry_id  String
   ledger_account_id String
   side              Side
-  amount            Int      @db.Integer
+  amount            BigInt
   currency_code     String   @db.VarChar(3)
   created_at        DateTime @default(now())
 
   journalEntry   Journal_Entries @relation(fields: [journal_entry_id], references: [id])
   ledger_account Ledger_Account  @relation(fields: [ledger_account_id], references: [id])
+  bankAccount    Bank_Account?   @relation(fields: [bank_AccountId], references: [id])
+  bank_AccountId String?
 }
 
 enum Side {

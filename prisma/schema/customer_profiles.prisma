@@ -1,23 +1,23 @@
 model Customer {
   id             String   @id @default(uuid())
-  user_id        String
+  user_id        String   @unique
   first_name     String
   middle_name    String?
   last_name      String
-  date_of_birth  DateTime
+  date_of_birth  DateTime @db.Date
   address_line_1 String
   address_line_2 String?
   city           String
   region         String?
   country_code   String
   created_at     DateTime @default(now())
-  updated_at     DateTime @updatedAt()
+  updated_at     DateTime @updatedAt
 
   userAccount        User                 @relation(fields: [user_id], references: [id])
-  account_HolderId   String
-  beneficiaries      Beneficiary[]
-  scheduledTransfers Scheduled_Transfer[]
   accountHolders     Account_Holder[]
-  ledgerAccount      Ledger_Account?      @relation(fields: [ledger_AccountId], references: [id])
+  beneficiaries      Beneficiary[]
+  kycCases           Kyc_Case[]
+  scheduledTransfers Scheduled_Transfer[]
   ledger_AccountId   String?
+  ledgerAccount      Ledger_Account?      @relation(fields: [ledger_AccountId], references: [id])
 }

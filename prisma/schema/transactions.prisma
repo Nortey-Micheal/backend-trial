@@ -14,7 +14,7 @@ model Transaction {
   fee_amount    BigInt @default(0)
 
   description     String?
-  idempotency_key Idempotency_Keys @relation(fields: [idempotency_KeysId], references: [id])
+  idempotency_key Idempotency_Keys @relation(fields: [idempotency_Key_Id], references: [id])
   failure_code    String?
   failure_message String?
 
@@ -23,16 +23,15 @@ model Transaction {
   completed_at DateTime?
   reversed_at  DateTime?
 
-  source_account Bank_Account? @relation("TransactionSource", fields: [source_account_id], references: [id], onDelete: Restrict)
+  initiatedBy        User               @relation("TransactionInitiator", fields: [initiated_by], references: [id])
+  sourceAccount      Bank_Account?      @relation("TransactionSource", fields: [source_account_id], references: [id])
+  destinationAccount Bank_Account?      @relation("TransactionDestination", fields: [destination_account_id], references: [id])
+  journalEntries     Journal_Entries[]
+  accountHolds       Account_Hold[]
+  fraudAlerts        Fraud_Alert[]
+  transferAttempts   Transfer_Attempt[]
+  idempotency_Key_Id String             @unique
 
-  destination_account Bank_Account?      @relation("TransactionDestination", fields: [destination_account_id], references: [id], onDelete: Restrict)
-  journalEntries      Journal_Entries[]
-  accountHolds        Account_Hold[]
-  fraudAlerts         Fraud_Alert[]
-  transferAttempts    Transfer_Attempt[]
-  idempotency_KeysId  String
-
-  @@unique([initiated_by])
   @@index([source_account_id, created_at])
   @@index([destination_account_id, created_at])
   @@index([status, created_at])

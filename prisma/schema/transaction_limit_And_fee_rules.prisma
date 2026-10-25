@@ -1,11 +1,11 @@
 model Transaction_Limit {
   id                String                   @id @default(uuid())
-  account_type      Account_Type
+  account_type      AccountType
   transaction_type  Transaction_Type
   currency_code     String                   @db.VarChar(3)
-  max_single_amount Int?                     @db.Integer
-  max_daily_amount  Int?                     @db.Integer
-  max_daily_count   Int?                     @db.Integer
+  max_single_amount BigInt?
+  max_daily_amount  BigInt?
+  max_daily_count   BigInt?
   status            Transaction_Limit_Status
   created_by_id     String
   created_at        DateTime                 @default(now())
@@ -23,9 +23,9 @@ model Fee_Rule {
   transaction_type Transaction_Type
   currency_code    String           @db.VarChar(3)
   fee_type         Fee_Type
-  fee_value        Int              @db.Integer
-  minimum_fee      Int?
-  maximum_fee      Int?
+  fee_value        BigInt
+  minimum_fee      BigInt?
+  maximum_fee      BigInt?
   effective_from   DateTime
   effective_until  DateTime?
   status           Fee_Rule_Status

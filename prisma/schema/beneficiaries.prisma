@@ -9,7 +9,8 @@ model Beneficiary {
   verified_at                DateTime?
   created_at                 DateTime           @default(now())
 
-  customer Customer @relation(fields: [customer_id], references: [id])
+  customer    Customer      @relation(fields: [customer_id], references: [id])
+  bankAccount Bank_Account? @relation(fields: [bank_account_id], references: [id])
 }
 
 enum Beneficiary_Status {

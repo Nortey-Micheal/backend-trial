@@ -13,16 +13,19 @@ model User {
   createdAt         DateTime  @default(now())
   updateAt          DateTime  @updatedAt
 
-  user_roles         User_Roles[]
-  session            Session[]
-  kycCases           Kyc_Case[]
-  transactionLimits  Transaction_Limit[]
-  auditLogs          Audit_Log[]
-  reviewCases        Review_Case[]
-  idempotencyKeys    Idempotency_Keys[]
-  notificaions       Notificaion[]
-  reconciliationRuns Reconciliation_Run[]
-  customers          Customer[]
+  roleAssignmentsCreated User_Roles[] @relation("RoleAssignedBy")
+
+  user_roles            User_Roles[]
+  session               Session[]
+  kycCases              Kyc_Case[]
+  transactionLimits     Transaction_Limit[]
+  auditLogs             Audit_Log[]
+  reviewCases           Review_Case[]
+  idempotencyKeys       Idempotency_Keys[]
+  notificaions          Notificaion[]
+  reconciliationRuns    Reconciliation_Run[]
+  initiatedTransactions Transaction[]        @relation("TransactionInitiator")
+  customer              Customer?
 }
 
 enum Status {
@@ -47,8 +50,9 @@ model User_Roles {
   assigned_by String?
   assigned_at DateTime @default(now())
 
-  user User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  role Roles @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  user       User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  role       Roles @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  assignedBy User? @relation("RoleAssignedBy", fields: [assigned_by], references: [id])
 
   @@id([user_id, role_id])
 }

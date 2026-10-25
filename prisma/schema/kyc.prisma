@@ -3,9 +3,10 @@ model Kyc_Case {
   customer_id  String
   status       KYC_Status @default(NOT_STARTED)
   submitted_at DateTime?
-  reviewed_by  String
+  reviewed_by  String?
 
-  review_by    User           @relation(fields: [reviewed_by], references: [id], onDelete: Cascade)
+  customer     Customer       @relation(fields: [customer_id], references: [id])
+  review_by    User?          @relation(fields: [reviewed_by], references: [id], onDelete: SetNull)
   kycDocuments Kyc_Document[]
 }
 
