@@ -54,7 +54,14 @@ export const register = async (req: Request, res: Response) => {
         password: hashedPassword,
         first_name: firstName.trim(),
         middle_name: middleName?.trim() || null,
-        last_name: lastName.trim()
+        last_name: lastName.trim(),
+        user_roles: {
+          create: {
+            role: {
+              connect: { name: "CUSTOMER" }
+            }
+          }
+        }
       },
       select: { id: true }
     })
