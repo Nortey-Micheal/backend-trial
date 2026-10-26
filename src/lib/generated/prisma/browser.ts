@@ -18,7 +18,137 @@ export { Prisma }
 export * as $Enums from './enums.js'
 export * from './enums.js';
 /**
+ * Model Account_Balance_Projection
+ * 
+ */
+export type Account_Balance_Projection = Prisma.Account_Balance_ProjectionModel
+/**
+ * Model Account_Hold
+ * 
+ */
+export type Account_Hold = Prisma.Account_HoldModel
+/**
+ * Model Audit_Log
+ * 
+ */
+export type Audit_Log = Prisma.Audit_LogModel
+/**
+ * Model Bank_Account
+ * 
+ */
+export type Bank_Account = Prisma.Bank_AccountModel
+/**
+ * Model Account_Holder
+ * 
+ */
+export type Account_Holder = Prisma.Account_HolderModel
+/**
+ * Model Beneficiary
+ * 
+ */
+export type Beneficiary = Prisma.BeneficiaryModel
+/**
+ * Model Customer
+ * 
+ */
+export type Customer = Prisma.CustomerModel
+/**
+ * Model Fraud_Alert
+ * 
+ */
+export type Fraud_Alert = Prisma.Fraud_AlertModel
+/**
+ * Model Review_Case
+ * 
+ */
+export type Review_Case = Prisma.Review_CaseModel
+/**
+ * Model Idempotency_Keys
+ * 
+ */
+export type Idempotency_Keys = Prisma.Idempotency_KeysModel
+/**
+ * Model Journal_Entries
+ * 
+ */
+export type Journal_Entries = Prisma.Journal_EntriesModel
+/**
+ * Model Kyc_Case
+ * 
+ */
+export type Kyc_Case = Prisma.Kyc_CaseModel
+/**
+ * Model Kyc_Document
+ * 
+ */
+export type Kyc_Document = Prisma.Kyc_DocumentModel
+/**
+ * Model Ledger_Account
+ * 
+ */
+export type Ledger_Account = Prisma.Ledger_AccountModel
+/**
+ * Model Ledger_Postings
+ * 
+ */
+export type Ledger_Postings = Prisma.Ledger_PostingsModel
+/**
+ * Model Notificaion
+ * 
+ */
+export type Notificaion = Prisma.NotificaionModel
+/**
+ * Model Reconciliation_Run
+ * 
+ */
+export type Reconciliation_Run = Prisma.Reconciliation_RunModel
+/**
+ * Model Scheduled_Transfer
+ * 
+ */
+export type Scheduled_Transfer = Prisma.Scheduled_TransferModel
+/**
+ * Model Transfer_Attempt
+ * 
+ */
+export type Transfer_Attempt = Prisma.Transfer_AttemptModel
+/**
+ * Model Session
+ * 
+ */
+export type Session = Prisma.SessionModel
+/**
+ * Model refresh_token
+ * 
+ */
+export type refresh_token = Prisma.refresh_tokenModel
+/**
+ * Model Transaction_Limit
+ * 
+ */
+export type Transaction_Limit = Prisma.Transaction_LimitModel
+/**
+ * Model Fee_Rule
+ * 
+ */
+export type Fee_Rule = Prisma.Fee_RuleModel
+/**
+ * Model Transaction
+ * 
+ */
+export type Transaction = Prisma.TransactionModel
+/**
  * Model User
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Roles
+ * 
+ */
+export type Roles = Prisma.RolesModel
+/**
+ * Model User_Roles
+ * 
+ */
+export type User_Roles = Prisma.User_RolesModel

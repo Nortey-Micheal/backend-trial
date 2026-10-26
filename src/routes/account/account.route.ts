@@ -1,13 +1,15 @@
 import { Router } from "express";
+import { accountClosure, getAccounts, getAccountStatement, openAccount, viewAccount, viewAccountBalance } from "../../controllers/account/account.controller.js";
+import { viewAccountTransaction } from "../../controllers/transaction/transactions.controller.js";
 
 const accountRoutes = Router()
 
-accountRoutes.post('/', )
-accountRoutes.get('/', )
-accountRoutes.get('/:id', )
-accountRoutes.get('/:id/balance', )
-accountRoutes.post('/:id/closure-request', )
-accountRoutes.get('/:id/statement', )
-accountRoutes.get('/:id/transactions', )
+accountRoutes.post('/', openAccount)
+accountRoutes.get('/', getAccounts)
+accountRoutes.get('/:id', viewAccount)
+accountRoutes.get('/:id/balance', viewAccountBalance)
+accountRoutes.post('/:id/closure-request', accountClosure)
+accountRoutes.get('/:id/statement', getAccountStatement)
+accountRoutes.get('/:id/transactions',viewAccountTransaction )
 
 export default accountRoutes

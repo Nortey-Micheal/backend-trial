@@ -51,7 +51,33 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  Account_Balance_Projection: 'Account_Balance_Projection',
+  Account_Hold: 'Account_Hold',
+  Audit_Log: 'Audit_Log',
+  Bank_Account: 'Bank_Account',
+  Account_Holder: 'Account_Holder',
+  Beneficiary: 'Beneficiary',
+  Customer: 'Customer',
+  Fraud_Alert: 'Fraud_Alert',
+  Review_Case: 'Review_Case',
+  Idempotency_Keys: 'Idempotency_Keys',
+  Journal_Entries: 'Journal_Entries',
+  Kyc_Case: 'Kyc_Case',
+  Kyc_Document: 'Kyc_Document',
+  Ledger_Account: 'Ledger_Account',
+  Ledger_Postings: 'Ledger_Postings',
+  Notificaion: 'Notificaion',
+  Reconciliation_Run: 'Reconciliation_Run',
+  Scheduled_Transfer: 'Scheduled_Transfer',
+  Transfer_Attempt: 'Transfer_Attempt',
+  Session: 'Session',
+  refresh_token: 'refresh_token',
+  Transaction_Limit: 'Transaction_Limit',
+  Fee_Rule: 'Fee_Rule',
+  Transaction: 'Transaction',
+  User: 'User',
+  Roles: 'Roles',
+  User_Roles: 'User_Roles'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,16 +96,400 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const Account_Balance_ProjectionScalarFieldEnum = {
+  id: 'id',
+  account_id: 'account_id',
+  ledger_balance: 'ledger_balance',
+  available_balance: 'available_balance',
+  updated_at: 'updated_at'
+} as const
+
+export type Account_Balance_ProjectionScalarFieldEnum = (typeof Account_Balance_ProjectionScalarFieldEnum)[keyof typeof Account_Balance_ProjectionScalarFieldEnum]
+
+
+export const Account_HoldScalarFieldEnum = {
+  id: 'id',
+  account_id: 'account_id',
+  transaction_id: 'transaction_id',
+  amount: 'amount',
+  status: 'status',
+  expired_at: 'expired_at',
+  created_at: 'created_at',
+  released_at: 'released_at'
+} as const
+
+export type Account_HoldScalarFieldEnum = (typeof Account_HoldScalarFieldEnum)[keyof typeof Account_HoldScalarFieldEnum]
+
+
+export const Audit_LogScalarFieldEnum = {
+  id: 'id',
+  actor_user_id: 'actor_user_id',
+  action: 'action',
+  entity_type: 'entity_type',
+  entity_id: 'entity_id',
+  request_id: 'request_id',
+  reason: 'reason',
+  metadata: 'metadata',
+  created_at: 'created_at'
+} as const
+
+export type Audit_LogScalarFieldEnum = (typeof Audit_LogScalarFieldEnum)[keyof typeof Audit_LogScalarFieldEnum]
+
+
+export const Bank_AccountScalarFieldEnum = {
+  id: 'id',
+  account_number: 'account_number',
+  account: 'account',
+  currency_code: 'currency_code',
+  status: 'status',
+  opened_at: 'opened_at',
+  closed_at: 'closed_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Bank_AccountScalarFieldEnum = (typeof Bank_AccountScalarFieldEnum)[keyof typeof Bank_AccountScalarFieldEnum]
+
+
+export const Account_HolderScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  account_id: 'account_id',
+  relationship_type: 'relationship_type',
+  can_view: 'can_view',
+  can_transact: 'can_transact',
+  started_at: 'started_at',
+  ended_at: 'ended_at'
+} as const
+
+export type Account_HolderScalarFieldEnum = (typeof Account_HolderScalarFieldEnum)[keyof typeof Account_HolderScalarFieldEnum]
+
+
+export const BeneficiaryScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  beneficiary_name: 'beneficiary_name',
+  bank_account_id: 'bank_account_id',
+  external_account_reference: 'external_account_reference',
+  bank_name: 'bank_name',
+  status: 'status',
+  verified_at: 'verified_at',
+  created_at: 'created_at'
+} as const
+
+export type BeneficiaryScalarFieldEnum = (typeof BeneficiaryScalarFieldEnum)[keyof typeof BeneficiaryScalarFieldEnum]
+
+
+export const CustomerScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  date_of_birth: 'date_of_birth',
+  address_line_1: 'address_line_1',
+  address_line_2: 'address_line_2',
+  city: 'city',
+  region: 'region',
+  country_code: 'country_code',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  ledger_AccountId: 'ledger_AccountId'
+} as const
+
+export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
+
+
+export const Fraud_AlertScalarFieldEnum = {
+  id: 'id',
+  transaction_id: 'transaction_id',
+  rule_code: 'rule_code',
+  severity: 'severity',
+  status: 'status',
+  details: 'details',
+  created_at: 'created_at',
+  resolved_at: 'resolved_at'
+} as const
+
+export type Fraud_AlertScalarFieldEnum = (typeof Fraud_AlertScalarFieldEnum)[keyof typeof Fraud_AlertScalarFieldEnum]
+
+
+export const Review_CaseScalarFieldEnum = {
+  id: 'id',
+  fraud_alert_id: 'fraud_alert_id',
+  assigned_to: 'assigned_to',
+  status: 'status',
+  resolution: 'resolution',
+  created_at: 'created_at',
+  resolved_at: 'resolved_at'
+} as const
+
+export type Review_CaseScalarFieldEnum = (typeof Review_CaseScalarFieldEnum)[keyof typeof Review_CaseScalarFieldEnum]
+
+
+export const Idempotency_KeysScalarFieldEnum = {
+  id: 'id',
+  actor_user_id: 'actor_user_id',
+  operation: 'operation',
+  key: 'key',
+  request_hash: 'request_hash',
+  resource_id: 'resource_id',
+  response_status: 'response_status',
+  resonse_body: 'resonse_body',
+  created_at: 'created_at',
+  expires_at: 'expires_at'
+} as const
+
+export type Idempotency_KeysScalarFieldEnum = (typeof Idempotency_KeysScalarFieldEnum)[keyof typeof Idempotency_KeysScalarFieldEnum]
+
+
+export const Journal_EntriesScalarFieldEnum = {
+  id: 'id',
+  transaction_id: 'transaction_id',
+  journal_reference: 'journal_reference',
+  status: 'status',
+  effective_at: 'effective_at',
+  posted_at: 'posted_at',
+  created_at: 'created_at'
+} as const
+
+export type Journal_EntriesScalarFieldEnum = (typeof Journal_EntriesScalarFieldEnum)[keyof typeof Journal_EntriesScalarFieldEnum]
+
+
+export const Kyc_CaseScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  status: 'status',
+  submitted_at: 'submitted_at',
+  reviewed_by: 'reviewed_by'
+} as const
+
+export type Kyc_CaseScalarFieldEnum = (typeof Kyc_CaseScalarFieldEnum)[keyof typeof Kyc_CaseScalarFieldEnum]
+
+
+export const Kyc_DocumentScalarFieldEnum = {
+  id: 'id',
+  kyc_case_id: 'kyc_case_id',
+  document_type: 'document_type',
+  storage_key: 'storage_key',
+  document_reference_hash: 'document_reference_hash',
+  status: 'status',
+  uploaded_at: 'uploaded_at',
+  reviewed_at: 'reviewed_at'
+} as const
+
+export type Kyc_DocumentScalarFieldEnum = (typeof Kyc_DocumentScalarFieldEnum)[keyof typeof Kyc_DocumentScalarFieldEnum]
+
+
+export const Ledger_AccountScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  account_type: 'account_type',
+  currency_code: 'currency_code',
+  bank_account_id: 'bank_account_id',
+  is_system_account: 'is_system_account',
+  status: 'status',
+  created_at: 'created_at'
+} as const
+
+export type Ledger_AccountScalarFieldEnum = (typeof Ledger_AccountScalarFieldEnum)[keyof typeof Ledger_AccountScalarFieldEnum]
+
+
+export const Ledger_PostingsScalarFieldEnum = {
+  id: 'id',
+  journal_entry_id: 'journal_entry_id',
+  ledger_account_id: 'ledger_account_id',
+  side: 'side',
+  amount: 'amount',
+  currency_code: 'currency_code',
+  created_at: 'created_at',
+  bank_AccountId: 'bank_AccountId'
+} as const
+
+export type Ledger_PostingsScalarFieldEnum = (typeof Ledger_PostingsScalarFieldEnum)[keyof typeof Ledger_PostingsScalarFieldEnum]
+
+
+export const NotificaionScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  data: 'data',
+  read_at: 'read_at',
+  created_at: 'created_at'
+} as const
+
+export type NotificaionScalarFieldEnum = (typeof NotificaionScalarFieldEnum)[keyof typeof NotificaionScalarFieldEnum]
+
+
+export const Reconciliation_RunScalarFieldEnum = {
+  id: 'id',
+  started_by: 'started_by',
+  status: 'status',
+  started_at: 'started_at',
+  completed_at: 'completed_at',
+  accounts_checked: 'accounts_checked',
+  discrepancies_found: 'discrepancies_found',
+  summary: 'summary'
+} as const
+
+export type Reconciliation_RunScalarFieldEnum = (typeof Reconciliation_RunScalarFieldEnum)[keyof typeof Reconciliation_RunScalarFieldEnum]
+
+
+export const Scheduled_TransferScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  source_account_id: 'source_account_id',
+  destination_account_id: 'destination_account_id',
+  amount: 'amount',
+  currency_code: 'currency_code',
+  frequency: 'frequency',
+  next_run_at: 'next_run_at',
+  end_at: 'end_at',
+  status: 'status',
+  created_at: 'created_at'
+} as const
+
+export type Scheduled_TransferScalarFieldEnum = (typeof Scheduled_TransferScalarFieldEnum)[keyof typeof Scheduled_TransferScalarFieldEnum]
+
+
+export const Transfer_AttemptScalarFieldEnum = {
+  id: 'id',
+  scheduled_transfer_id: 'scheduled_transfer_id',
+  transaction_id: 'transaction_id',
+  attempt_number: 'attempt_number',
+  status: 'status',
+  started_at: 'started_at',
+  finished_at: 'finished_at',
+  failure_code: 'failure_code'
+} as const
+
+export type Transfer_AttemptScalarFieldEnum = (typeof Transfer_AttemptScalarFieldEnum)[keyof typeof Transfer_AttemptScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  device_label: 'device_label',
+  ip_address: 'ip_address',
+  user_agent: 'user_agent',
+  created_at: 'created_at',
+  last_seen_at: 'last_seen_at',
+  expires_at: 'expires_at',
+  revoked_at: 'revoked_at'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const Refresh_tokenScalarFieldEnum = {
+  id: 'id',
+  session_id: 'session_id',
+  token_hash: 'token_hash',
+  family_id: 'family_id',
+  expires_at: 'expires_at',
+  used_at: 'used_at',
+  revoked_at: 'revoked_at',
+  created_at: 'created_at'
+} as const
+
+export type Refresh_tokenScalarFieldEnum = (typeof Refresh_tokenScalarFieldEnum)[keyof typeof Refresh_tokenScalarFieldEnum]
+
+
+export const Transaction_LimitScalarFieldEnum = {
+  id: 'id',
+  account_type: 'account_type',
+  transaction_type: 'transaction_type',
+  currency_code: 'currency_code',
+  max_single_amount: 'max_single_amount',
+  max_daily_amount: 'max_daily_amount',
+  max_daily_count: 'max_daily_count',
+  status: 'status',
+  created_by_id: 'created_by_id',
+  created_at: 'created_at'
+} as const
+
+export type Transaction_LimitScalarFieldEnum = (typeof Transaction_LimitScalarFieldEnum)[keyof typeof Transaction_LimitScalarFieldEnum]
+
+
+export const Fee_RuleScalarFieldEnum = {
+  id: 'id',
+  transaction_type: 'transaction_type',
+  currency_code: 'currency_code',
+  fee_type: 'fee_type',
+  fee_value: 'fee_value',
+  minimum_fee: 'minimum_fee',
+  maximum_fee: 'maximum_fee',
+  effective_from: 'effective_from',
+  effective_until: 'effective_until',
+  status: 'status'
+} as const
+
+export type Fee_RuleScalarFieldEnum = (typeof Fee_RuleScalarFieldEnum)[keyof typeof Fee_RuleScalarFieldEnum]
+
+
+export const TransactionScalarFieldEnum = {
+  id: 'id',
+  reference: 'reference',
+  type: 'type',
+  status: 'status',
+  initiated_by: 'initiated_by',
+  source_account_id: 'source_account_id',
+  destination_account_id: 'destination_account_id',
+  amount: 'amount',
+  currency_code: 'currency_code',
+  fee_amount: 'fee_amount',
+  description: 'description',
+  failure_code: 'failure_code',
+  failure_message: 'failure_message',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  completed_at: 'completed_at',
+  reversed_at: 'reversed_at',
+  idempotency_Key_Id: 'idempotency_Key_Id'
+} as const
+
+export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  first_name: 'first_name',
+  middle_name: 'middle_name',
+  last_name: 'last_name',
   email: 'email',
+  email_normalized: 'email_normalized',
+  phone: 'phone',
+  phone_normalized: 'phone_normalized',
   password: 'password',
+  status: 'status',
+  email_verified_at: 'email_verified_at',
+  phone_verified_at: 'phone_verified_at',
+  last_login_at: 'last_login_at',
   createdAt: 'createdAt',
   updateAt: 'updateAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const RolesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  created_at: 'created_at'
+} as const
+
+export type RolesScalarFieldEnum = (typeof RolesScalarFieldEnum)[keyof typeof RolesScalarFieldEnum]
+
+
+export const User_RolesScalarFieldEnum = {
+  user_id: 'user_id',
+  role_id: 'role_id',
+  assigned_by: 'assigned_by',
+  assigned_at: 'assigned_at'
+} as const
+
+export type User_RolesScalarFieldEnum = (typeof User_RolesScalarFieldEnum)[keyof typeof User_RolesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -90,10 +500,42 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

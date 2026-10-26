@@ -8,7 +8,7 @@ export const withdraw = async (req:Request, res:Response) => {
   
 }
 
-export const tranfer = async (req:Request, res:Response) => {
+export const transfer = async (req:Request, res:Response) => {
   
 }
 

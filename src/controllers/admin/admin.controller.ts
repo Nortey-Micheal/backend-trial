@@ -1,3 +1,5 @@
+import { Request, Response } from "express"
+
 export const manageUsers = async (req:Request, res:Response) => {
   
 }

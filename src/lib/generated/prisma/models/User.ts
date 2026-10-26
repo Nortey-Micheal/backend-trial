@@ -26,27 +26,54 @@ export type AggregateUser = {
 
 export type UserMinAggregateOutputType = {
   id: string | null
-  name: string | null
+  first_name: string | null
+  middle_name: string | null
+  last_name: string | null
   email: string | null
+  email_normalized: string | null
+  phone: string | null
+  phone_normalized: string | null
   password: string | null
+  status: $Enums.Status | null
+  email_verified_at: Date | null
+  phone_verified_at: Date | null
+  last_login_at: Date | null
   createdAt: Date | null
   updateAt: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: string | null
-  name: string | null
+  first_name: string | null
+  middle_name: string | null
+  last_name: string | null
   email: string | null
+  email_normalized: string | null
+  phone: string | null
+  phone_normalized: string | null
   password: string | null
+  status: $Enums.Status | null
+  email_verified_at: Date | null
+  phone_verified_at: Date | null
+  last_login_at: Date | null
   createdAt: Date | null
   updateAt: Date | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
-  name: number
+  first_name: number
+  middle_name: number
+  last_name: number
   email: number
+  email_normalized: number
+  phone: number
+  phone_normalized: number
   password: number
+  status: number
+  email_verified_at: number
+  phone_verified_at: number
+  last_login_at: number
   createdAt: number
   updateAt: number
   _all: number
@@ -55,27 +82,54 @@ export type UserCountAggregateOutputType = {
 
 export type UserMinAggregateInputType = {
   id?: true
-  name?: true
+  first_name?: true
+  middle_name?: true
+  last_name?: true
   email?: true
+  email_normalized?: true
+  phone?: true
+  phone_normalized?: true
   password?: true
+  status?: true
+  email_verified_at?: true
+  phone_verified_at?: true
+  last_login_at?: true
   createdAt?: true
   updateAt?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
-  name?: true
+  first_name?: true
+  middle_name?: true
+  last_name?: true
   email?: true
+  email_normalized?: true
+  phone?: true
+  phone_normalized?: true
   password?: true
+  status?: true
+  email_verified_at?: true
+  phone_verified_at?: true
+  last_login_at?: true
   createdAt?: true
   updateAt?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
-  name?: true
+  first_name?: true
+  middle_name?: true
+  last_name?: true
   email?: true
+  email_normalized?: true
+  phone?: true
+  phone_normalized?: true
   password?: true
+  status?: true
+  email_verified_at?: true
+  phone_verified_at?: true
+  last_login_at?: true
   createdAt?: true
   updateAt?: true
   _all?: true
@@ -155,9 +209,18 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: string
-  name: string
-  email: string
+  first_name: string
+  middle_name: string | null
+  last_name: string
+  email: string | null
+  email_normalized: string | null
+  phone: string | null
+  phone_normalized: string | null
   password: string
+  status: $Enums.Status
+  email_verified_at: Date | null
+  phone_verified_at: Date | null
+  last_login_at: Date | null
   createdAt: Date
   updateAt: Date
   _count: UserCountAggregateOutputType | null
@@ -185,39 +248,111 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
-  name?: Prisma.StringFilter<"User"> | string
-  email?: Prisma.StringFilter<"User"> | string
+  first_name?: Prisma.StringFilter<"User"> | string
+  middle_name?: Prisma.StringNullableFilter<"User"> | string | null
+  last_name?: Prisma.StringFilter<"User"> | string
+  email?: Prisma.StringNullableFilter<"User"> | string | null
+  email_normalized?: Prisma.StringNullableFilter<"User"> | string | null
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  phone_normalized?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringFilter<"User"> | string
+  status?: Prisma.EnumStatusFilter<"User"> | $Enums.Status
+  email_verified_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  phone_verified_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  last_login_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updateAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesListRelationFilter
+  user_roles?: Prisma.User_RolesListRelationFilter
+  session?: Prisma.SessionListRelationFilter
+  kycCases?: Prisma.Kyc_CaseListRelationFilter
+  transactionLimits?: Prisma.Transaction_LimitListRelationFilter
+  auditLogs?: Prisma.Audit_LogListRelationFilter
+  reviewCases?: Prisma.Review_CaseListRelationFilter
+  idempotencyKeys?: Prisma.Idempotency_KeysListRelationFilter
+  notificaions?: Prisma.NotificaionListRelationFilter
+  reconciliationRuns?: Prisma.Reconciliation_RunListRelationFilter
+  initiatedTransactions?: Prisma.TransactionListRelationFilter
+  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  email?: Prisma.SortOrder
+  first_name?: Prisma.SortOrder
+  middle_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_name?: Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  email_normalized?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone_normalized?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  email_verified_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone_verified_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_login_at?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
+  roleAssignmentsCreated?: Prisma.User_RolesOrderByRelationAggregateInput
+  user_roles?: Prisma.User_RolesOrderByRelationAggregateInput
+  session?: Prisma.SessionOrderByRelationAggregateInput
+  kycCases?: Prisma.Kyc_CaseOrderByRelationAggregateInput
+  transactionLimits?: Prisma.Transaction_LimitOrderByRelationAggregateInput
+  auditLogs?: Prisma.Audit_LogOrderByRelationAggregateInput
+  reviewCases?: Prisma.Review_CaseOrderByRelationAggregateInput
+  idempotencyKeys?: Prisma.Idempotency_KeysOrderByRelationAggregateInput
+  notificaions?: Prisma.NotificaionOrderByRelationAggregateInput
+  reconciliationRuns?: Prisma.Reconciliation_RunOrderByRelationAggregateInput
+  initiatedTransactions?: Prisma.TransactionOrderByRelationAggregateInput
+  customer?: Prisma.CustomerOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  email?: string
+  email_normalized?: string
+  phone_normalized?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  name?: Prisma.StringFilter<"User"> | string
+  first_name?: Prisma.StringFilter<"User"> | string
+  middle_name?: Prisma.StringNullableFilter<"User"> | string | null
+  last_name?: Prisma.StringFilter<"User"> | string
+  email?: Prisma.StringNullableFilter<"User"> | string | null
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringFilter<"User"> | string
+  status?: Prisma.EnumStatusFilter<"User"> | $Enums.Status
+  email_verified_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  phone_verified_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  last_login_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updateAt?: Prisma.DateTimeFilter<"User"> | Date | string
-}, "id" | "email">
+  roleAssignmentsCreated?: Prisma.User_RolesListRelationFilter
+  user_roles?: Prisma.User_RolesListRelationFilter
+  session?: Prisma.SessionListRelationFilter
+  kycCases?: Prisma.Kyc_CaseListRelationFilter
+  transactionLimits?: Prisma.Transaction_LimitListRelationFilter
+  auditLogs?: Prisma.Audit_LogListRelationFilter
+  reviewCases?: Prisma.Review_CaseListRelationFilter
+  idempotencyKeys?: Prisma.Idempotency_KeysListRelationFilter
+  notificaions?: Prisma.NotificaionListRelationFilter
+  reconciliationRuns?: Prisma.Reconciliation_RunListRelationFilter
+  initiatedTransactions?: Prisma.TransactionListRelationFilter
+  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
+}, "id" | "email_normalized" | "phone_normalized">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  email?: Prisma.SortOrder
+  first_name?: Prisma.SortOrder
+  middle_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_name?: Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  email_normalized?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone_normalized?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  email_verified_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone_verified_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_login_at?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -230,159 +365,2279 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
-  name?: Prisma.StringWithAggregatesFilter<"User"> | string
-  email?: Prisma.StringWithAggregatesFilter<"User"> | string
+  first_name?: Prisma.StringWithAggregatesFilter<"User"> | string
+  middle_name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  last_name?: Prisma.StringWithAggregatesFilter<"User"> | string
+  email?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  email_normalized?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  phone_normalized?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
+  status?: Prisma.EnumStatusWithAggregatesFilter<"User"> | $Enums.Status
+  email_verified_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  phone_verified_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  last_login_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updateAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
 export type UserCreateInput = {
   id?: string
-  name: string
-  email: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
   password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: string
-  name: string
-  email: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
   password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
 }
 
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: string
-  name: string
-  email: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
   password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  first_name?: Prisma.SortOrder
+  middle_name?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  email_normalized?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  phone_normalized?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  email_verified_at?: Prisma.SortOrder
+  phone_verified_at?: Prisma.SortOrder
+  last_login_at?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  first_name?: Prisma.SortOrder
+  middle_name?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  email_normalized?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  phone_normalized?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  email_verified_at?: Prisma.SortOrder
+  phone_verified_at?: Prisma.SortOrder
+  last_login_at?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  first_name?: Prisma.SortOrder
+  middle_name?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  email_normalized?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  phone_normalized?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  email_verified_at?: Prisma.SortOrder
+  phone_verified_at?: Prisma.SortOrder
+  last_login_at?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
+export type UserCreateNestedOneWithoutAuditLogsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
+  connect?: Prisma.UserWhereUniqueInput
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
+export type UserUpdateOneWithoutAuditLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
+  upsert?: Prisma.UserUpsertWithoutAuditLogsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.UserUpdateWithoutAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
 }
 
+export type UserCreateNestedOneWithoutCustomerInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCustomerInput, Prisma.UserUncheckedCreateWithoutCustomerInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCustomerInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCustomerNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCustomerInput, Prisma.UserUncheckedCreateWithoutCustomerInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCustomerInput
+  upsert?: Prisma.UserUpsertWithoutCustomerInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCustomerInput, Prisma.UserUpdateWithoutCustomerInput>, Prisma.UserUncheckedUpdateWithoutCustomerInput>
+}
+
+export type UserCreateNestedOneWithoutReviewCasesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewCasesInput, Prisma.UserUncheckedCreateWithoutReviewCasesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewCasesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutReviewCasesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewCasesInput, Prisma.UserUncheckedCreateWithoutReviewCasesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewCasesInput
+  upsert?: Prisma.UserUpsertWithoutReviewCasesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewCasesInput, Prisma.UserUpdateWithoutReviewCasesInput>, Prisma.UserUncheckedUpdateWithoutReviewCasesInput>
+}
+
+export type UserCreateNestedOneWithoutIdempotencyKeysInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutIdempotencyKeysInput, Prisma.UserUncheckedCreateWithoutIdempotencyKeysInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutIdempotencyKeysInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutIdempotencyKeysNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutIdempotencyKeysInput, Prisma.UserUncheckedCreateWithoutIdempotencyKeysInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutIdempotencyKeysInput
+  upsert?: Prisma.UserUpsertWithoutIdempotencyKeysInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutIdempotencyKeysInput, Prisma.UserUpdateWithoutIdempotencyKeysInput>, Prisma.UserUncheckedUpdateWithoutIdempotencyKeysInput>
+}
+
+export type UserCreateNestedOneWithoutKycCasesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutKycCasesInput, Prisma.UserUncheckedCreateWithoutKycCasesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutKycCasesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutKycCasesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutKycCasesInput, Prisma.UserUncheckedCreateWithoutKycCasesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutKycCasesInput
+  upsert?: Prisma.UserUpsertWithoutKycCasesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutKycCasesInput, Prisma.UserUpdateWithoutKycCasesInput>, Prisma.UserUncheckedUpdateWithoutKycCasesInput>
+}
+
+export type UserCreateNestedOneWithoutNotificaionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificaionsInput, Prisma.UserUncheckedCreateWithoutNotificaionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificaionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutNotificaionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificaionsInput, Prisma.UserUncheckedCreateWithoutNotificaionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificaionsInput
+  upsert?: Prisma.UserUpsertWithoutNotificaionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificaionsInput, Prisma.UserUpdateWithoutNotificaionsInput>, Prisma.UserUncheckedUpdateWithoutNotificaionsInput>
+}
+
+export type UserCreateNestedOneWithoutReconciliationRunsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReconciliationRunsInput, Prisma.UserUncheckedCreateWithoutReconciliationRunsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReconciliationRunsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutReconciliationRunsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReconciliationRunsInput, Prisma.UserUncheckedCreateWithoutReconciliationRunsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReconciliationRunsInput
+  upsert?: Prisma.UserUpsertWithoutReconciliationRunsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReconciliationRunsInput, Prisma.UserUpdateWithoutReconciliationRunsInput>, Prisma.UserUncheckedUpdateWithoutReconciliationRunsInput>
+}
+
+export type UserCreateNestedOneWithoutSessionInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSessionInput, Prisma.UserUncheckedCreateWithoutSessionInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSessionInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSessionNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSessionInput, Prisma.UserUncheckedCreateWithoutSessionInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSessionInput
+  upsert?: Prisma.UserUpsertWithoutSessionInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSessionInput, Prisma.UserUpdateWithoutSessionInput>, Prisma.UserUncheckedUpdateWithoutSessionInput>
+}
+
+export type UserCreateNestedOneWithoutTransactionLimitsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTransactionLimitsInput, Prisma.UserUncheckedCreateWithoutTransactionLimitsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTransactionLimitsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTransactionLimitsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTransactionLimitsInput, Prisma.UserUncheckedCreateWithoutTransactionLimitsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTransactionLimitsInput
+  upsert?: Prisma.UserUpsertWithoutTransactionLimitsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTransactionLimitsInput, Prisma.UserUpdateWithoutTransactionLimitsInput>, Prisma.UserUncheckedUpdateWithoutTransactionLimitsInput>
+}
+
+export type UserCreateNestedOneWithoutInitiatedTransactionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInitiatedTransactionsInput, Prisma.UserUncheckedCreateWithoutInitiatedTransactionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInitiatedTransactionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutInitiatedTransactionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInitiatedTransactionsInput, Prisma.UserUncheckedCreateWithoutInitiatedTransactionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInitiatedTransactionsInput
+  upsert?: Prisma.UserUpsertWithoutInitiatedTransactionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInitiatedTransactionsInput, Prisma.UserUpdateWithoutInitiatedTransactionsInput>, Prisma.UserUncheckedUpdateWithoutInitiatedTransactionsInput>
+}
+
+export type EnumStatusFieldUpdateOperationsInput = {
+  set?: $Enums.Status
+}
+
+export type UserCreateNestedOneWithoutUser_rolesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_rolesInput, Prisma.UserUncheckedCreateWithoutUser_rolesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_rolesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutRoleAssignmentsCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsCreatedInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutUser_rolesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUser_rolesInput, Prisma.UserUncheckedCreateWithoutUser_rolesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser_rolesInput
+  upsert?: Prisma.UserUpsertWithoutUser_rolesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUser_rolesInput, Prisma.UserUpdateWithoutUser_rolesInput>, Prisma.UserUncheckedUpdateWithoutUser_rolesInput>
+}
+
+export type UserUpdateOneWithoutRoleAssignmentsCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsCreatedInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsCreatedInput
+  upsert?: Prisma.UserUpsertWithoutRoleAssignmentsCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRoleAssignmentsCreatedInput, Prisma.UserUpdateWithoutRoleAssignmentsCreatedInput>, Prisma.UserUncheckedUpdateWithoutRoleAssignmentsCreatedInput>
+}
+
+export type UserCreateWithoutAuditLogsInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutAuditLogsInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutAuditLogsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+}
+
+export type UserUpsertWithoutAuditLogsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAuditLogsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+}
+
+export type UserUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserCreateWithoutCustomerInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+}
+
+export type UserUncheckedCreateWithoutCustomerInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+}
+
+export type UserCreateOrConnectWithoutCustomerInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCustomerInput, Prisma.UserUncheckedCreateWithoutCustomerInput>
+}
+
+export type UserUpsertWithoutCustomerInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCustomerInput, Prisma.UserUncheckedUpdateWithoutCustomerInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCustomerInput, Prisma.UserUncheckedCreateWithoutCustomerInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCustomerInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCustomerInput, Prisma.UserUncheckedUpdateWithoutCustomerInput>
+}
+
+export type UserUpdateWithoutCustomerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCustomerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+}
+
+export type UserCreateWithoutReviewCasesInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutReviewCasesInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutReviewCasesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewCasesInput, Prisma.UserUncheckedCreateWithoutReviewCasesInput>
+}
+
+export type UserUpsertWithoutReviewCasesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewCasesInput, Prisma.UserUncheckedUpdateWithoutReviewCasesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewCasesInput, Prisma.UserUncheckedCreateWithoutReviewCasesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewCasesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewCasesInput, Prisma.UserUncheckedUpdateWithoutReviewCasesInput>
+}
+
+export type UserUpdateWithoutReviewCasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewCasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserCreateWithoutIdempotencyKeysInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutIdempotencyKeysInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutIdempotencyKeysInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutIdempotencyKeysInput, Prisma.UserUncheckedCreateWithoutIdempotencyKeysInput>
+}
+
+export type UserUpsertWithoutIdempotencyKeysInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutIdempotencyKeysInput, Prisma.UserUncheckedUpdateWithoutIdempotencyKeysInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutIdempotencyKeysInput, Prisma.UserUncheckedCreateWithoutIdempotencyKeysInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutIdempotencyKeysInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutIdempotencyKeysInput, Prisma.UserUncheckedUpdateWithoutIdempotencyKeysInput>
+}
+
+export type UserUpdateWithoutIdempotencyKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutIdempotencyKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserCreateWithoutKycCasesInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutKycCasesInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutKycCasesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutKycCasesInput, Prisma.UserUncheckedCreateWithoutKycCasesInput>
+}
+
+export type UserUpsertWithoutKycCasesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutKycCasesInput, Prisma.UserUncheckedUpdateWithoutKycCasesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutKycCasesInput, Prisma.UserUncheckedCreateWithoutKycCasesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutKycCasesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutKycCasesInput, Prisma.UserUncheckedUpdateWithoutKycCasesInput>
+}
+
+export type UserUpdateWithoutKycCasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutKycCasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserCreateWithoutNotificaionsInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutNotificaionsInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutNotificaionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificaionsInput, Prisma.UserUncheckedCreateWithoutNotificaionsInput>
+}
+
+export type UserUpsertWithoutNotificaionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNotificaionsInput, Prisma.UserUncheckedUpdateWithoutNotificaionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificaionsInput, Prisma.UserUncheckedCreateWithoutNotificaionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNotificaionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNotificaionsInput, Prisma.UserUncheckedUpdateWithoutNotificaionsInput>
+}
+
+export type UserUpdateWithoutNotificaionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNotificaionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserCreateWithoutReconciliationRunsInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutReconciliationRunsInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutReconciliationRunsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReconciliationRunsInput, Prisma.UserUncheckedCreateWithoutReconciliationRunsInput>
+}
+
+export type UserUpsertWithoutReconciliationRunsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReconciliationRunsInput, Prisma.UserUncheckedUpdateWithoutReconciliationRunsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReconciliationRunsInput, Prisma.UserUncheckedCreateWithoutReconciliationRunsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReconciliationRunsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReconciliationRunsInput, Prisma.UserUncheckedUpdateWithoutReconciliationRunsInput>
+}
+
+export type UserUpdateWithoutReconciliationRunsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReconciliationRunsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserCreateWithoutSessionInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutSessionInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutSessionInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSessionInput, Prisma.UserUncheckedCreateWithoutSessionInput>
+}
+
+export type UserUpsertWithoutSessionInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSessionInput, Prisma.UserUncheckedUpdateWithoutSessionInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSessionInput, Prisma.UserUncheckedCreateWithoutSessionInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSessionInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSessionInput, Prisma.UserUncheckedUpdateWithoutSessionInput>
+}
+
+export type UserUpdateWithoutSessionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSessionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserCreateWithoutTransactionLimitsInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutTransactionLimitsInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutTransactionLimitsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTransactionLimitsInput, Prisma.UserUncheckedCreateWithoutTransactionLimitsInput>
+}
+
+export type UserUpsertWithoutTransactionLimitsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTransactionLimitsInput, Prisma.UserUncheckedUpdateWithoutTransactionLimitsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTransactionLimitsInput, Prisma.UserUncheckedCreateWithoutTransactionLimitsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTransactionLimitsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTransactionLimitsInput, Prisma.UserUncheckedUpdateWithoutTransactionLimitsInput>
+}
+
+export type UserUpdateWithoutTransactionLimitsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTransactionLimitsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserCreateWithoutInitiatedTransactionsInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutInitiatedTransactionsInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutInitiatedTransactionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutInitiatedTransactionsInput, Prisma.UserUncheckedCreateWithoutInitiatedTransactionsInput>
+}
+
+export type UserUpsertWithoutInitiatedTransactionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutInitiatedTransactionsInput, Prisma.UserUncheckedUpdateWithoutInitiatedTransactionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutInitiatedTransactionsInput, Prisma.UserUncheckedCreateWithoutInitiatedTransactionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutInitiatedTransactionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutInitiatedTransactionsInput, Prisma.UserUncheckedUpdateWithoutInitiatedTransactionsInput>
+}
+
+export type UserUpdateWithoutInitiatedTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutInitiatedTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserCreateWithoutUser_rolesInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutUser_rolesInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutUser_rolesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutUser_rolesInput, Prisma.UserUncheckedCreateWithoutUser_rolesInput>
+}
+
+export type UserCreateWithoutRoleAssignmentsCreatedInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserUncheckedCreateWithoutRoleAssignmentsCreatedInput = {
+  id?: string
+  first_name: string
+  middle_name?: string | null
+  last_name: string
+  email?: string | null
+  email_normalized?: string | null
+  phone?: string | null
+  phone_normalized?: string | null
+  password: string
+  status?: $Enums.Status
+  email_verified_at?: Date | string | null
+  phone_verified_at?: Date | string | null
+  last_login_at?: Date | string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
+  session?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  kycCases?: Prisma.Kyc_CaseUncheckedCreateNestedManyWithoutReview_byInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedCreateNestedManyWithoutCreated_byInput
+  auditLogs?: Prisma.Audit_LogUncheckedCreateNestedManyWithoutActor_userInput
+  reviewCases?: Prisma.Review_CaseUncheckedCreateNestedManyWithoutUserInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedCreateNestedManyWithoutActor_userInput
+  notificaions?: Prisma.NotificaionUncheckedCreateNestedManyWithoutUserInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedCreateNestedManyWithoutStartedByInput
+  initiatedTransactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutInitiatedByInput
+  customer?: Prisma.CustomerUncheckedCreateNestedOneWithoutUserAccountInput
+}
+
+export type UserCreateOrConnectWithoutRoleAssignmentsCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsCreatedInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsCreatedInput>
+}
+
+export type UserUpsertWithoutUser_rolesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUser_rolesInput, Prisma.UserUncheckedUpdateWithoutUser_rolesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUser_rolesInput, Prisma.UserUncheckedCreateWithoutUser_rolesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutUser_rolesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUser_rolesInput, Prisma.UserUncheckedUpdateWithoutUser_rolesInput>
+}
+
+export type UserUpdateWithoutUser_rolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutUser_rolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUpsertWithoutRoleAssignmentsCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRoleAssignmentsCreatedInput, Prisma.UserUncheckedUpdateWithoutRoleAssignmentsCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsCreatedInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRoleAssignmentsCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRoleAssignmentsCreatedInput, Prisma.UserUncheckedUpdateWithoutRoleAssignmentsCreatedInput>
+}
+
+export type UserUpdateWithoutRoleAssignmentsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutUserAccountNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRoleAssignmentsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone_normalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
+  session?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  kycCases?: Prisma.Kyc_CaseUncheckedUpdateManyWithoutReview_byNestedInput
+  transactionLimits?: Prisma.Transaction_LimitUncheckedUpdateManyWithoutCreated_byNestedInput
+  auditLogs?: Prisma.Audit_LogUncheckedUpdateManyWithoutActor_userNestedInput
+  reviewCases?: Prisma.Review_CaseUncheckedUpdateManyWithoutUserNestedInput
+  idempotencyKeys?: Prisma.Idempotency_KeysUncheckedUpdateManyWithoutActor_userNestedInput
+  notificaions?: Prisma.NotificaionUncheckedUpdateManyWithoutUserNestedInput
+  reconciliationRuns?: Prisma.Reconciliation_RunUncheckedUpdateManyWithoutStartedByNestedInput
+  initiatedTransactions?: Prisma.TransactionUncheckedUpdateManyWithoutInitiatedByNestedInput
+  customer?: Prisma.CustomerUncheckedUpdateOneWithoutUserAccountNestedInput
+}
+
+
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  roleAssignmentsCreated: number
+  user_roles: number
+  session: number
+  kycCases: number
+  transactionLimits: number
+  auditLogs: number
+  reviewCases: number
+  idempotencyKeys: number
+  notificaions: number
+  reconciliationRuns: number
+  initiatedTransactions: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  roleAssignmentsCreated?: boolean | UserCountOutputTypeCountRoleAssignmentsCreatedArgs
+  user_roles?: boolean | UserCountOutputTypeCountUser_rolesArgs
+  session?: boolean | UserCountOutputTypeCountSessionArgs
+  kycCases?: boolean | UserCountOutputTypeCountKycCasesArgs
+  transactionLimits?: boolean | UserCountOutputTypeCountTransactionLimitsArgs
+  auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
+  reviewCases?: boolean | UserCountOutputTypeCountReviewCasesArgs
+  idempotencyKeys?: boolean | UserCountOutputTypeCountIdempotencyKeysArgs
+  notificaions?: boolean | UserCountOutputTypeCountNotificaionsArgs
+  reconciliationRuns?: boolean | UserCountOutputTypeCountReconciliationRunsArgs
+  initiatedTransactions?: boolean | UserCountOutputTypeCountInitiatedTransactionsArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRoleAssignmentsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.User_RolesWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountUser_rolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.User_RolesWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSessionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountKycCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.Kyc_CaseWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTransactionLimitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.Transaction_LimitWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.Audit_LogWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.Review_CaseWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountIdempotencyKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.Idempotency_KeysWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNotificaionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificaionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReconciliationRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.Reconciliation_RunWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountInitiatedTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TransactionWhereInput
+}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
+  first_name?: boolean
+  middle_name?: boolean
+  last_name?: boolean
   email?: boolean
+  email_normalized?: boolean
+  phone?: boolean
+  phone_normalized?: boolean
   password?: boolean
+  status?: boolean
+  email_verified_at?: boolean
+  phone_verified_at?: boolean
+  last_login_at?: boolean
   createdAt?: boolean
   updateAt?: boolean
+  roleAssignmentsCreated?: boolean | Prisma.User$roleAssignmentsCreatedArgs<ExtArgs>
+  user_roles?: boolean | Prisma.User$user_rolesArgs<ExtArgs>
+  session?: boolean | Prisma.User$sessionArgs<ExtArgs>
+  kycCases?: boolean | Prisma.User$kycCasesArgs<ExtArgs>
+  transactionLimits?: boolean | Prisma.User$transactionLimitsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  reviewCases?: boolean | Prisma.User$reviewCasesArgs<ExtArgs>
+  idempotencyKeys?: boolean | Prisma.User$idempotencyKeysArgs<ExtArgs>
+  notificaions?: boolean | Prisma.User$notificaionsArgs<ExtArgs>
+  reconciliationRuns?: boolean | Prisma.User$reconciliationRunsArgs<ExtArgs>
+  initiatedTransactions?: boolean | Prisma.User$initiatedTransactionsArgs<ExtArgs>
+  customer?: boolean | Prisma.User$customerArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
+  first_name?: boolean
+  middle_name?: boolean
+  last_name?: boolean
   email?: boolean
+  email_normalized?: boolean
+  phone?: boolean
+  phone_normalized?: boolean
   password?: boolean
+  status?: boolean
+  email_verified_at?: boolean
+  phone_verified_at?: boolean
+  last_login_at?: boolean
   createdAt?: boolean
   updateAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
+  first_name?: boolean
+  middle_name?: boolean
+  last_name?: boolean
   email?: boolean
+  email_normalized?: boolean
+  phone?: boolean
+  phone_normalized?: boolean
   password?: boolean
+  status?: boolean
+  email_verified_at?: boolean
+  phone_verified_at?: boolean
+  last_login_at?: boolean
   createdAt?: boolean
   updateAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
-  name?: boolean
+  first_name?: boolean
+  middle_name?: boolean
+  last_name?: boolean
   email?: boolean
+  email_normalized?: boolean
+  phone?: boolean
+  phone_normalized?: boolean
   password?: boolean
+  status?: boolean
+  email_verified_at?: boolean
+  phone_verified_at?: boolean
+  last_login_at?: boolean
   createdAt?: boolean
   updateAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "createdAt" | "updateAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "first_name" | "middle_name" | "last_name" | "email" | "email_normalized" | "phone" | "phone_normalized" | "password" | "status" | "email_verified_at" | "phone_verified_at" | "last_login_at" | "createdAt" | "updateAt", ExtArgs["result"]["user"]>
+export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  roleAssignmentsCreated?: boolean | Prisma.User$roleAssignmentsCreatedArgs<ExtArgs>
+  user_roles?: boolean | Prisma.User$user_rolesArgs<ExtArgs>
+  session?: boolean | Prisma.User$sessionArgs<ExtArgs>
+  kycCases?: boolean | Prisma.User$kycCasesArgs<ExtArgs>
+  transactionLimits?: boolean | Prisma.User$transactionLimitsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  reviewCases?: boolean | Prisma.User$reviewCasesArgs<ExtArgs>
+  idempotencyKeys?: boolean | Prisma.User$idempotencyKeysArgs<ExtArgs>
+  notificaions?: boolean | Prisma.User$notificaionsArgs<ExtArgs>
+  reconciliationRuns?: boolean | Prisma.User$reconciliationRunsArgs<ExtArgs>
+  initiatedTransactions?: boolean | Prisma.User$initiatedTransactionsArgs<ExtArgs>
+  customer?: boolean | Prisma.User$customerArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
-  objects: {}
+  objects: {
+    roleAssignmentsCreated: Prisma.$User_RolesPayload<ExtArgs>[]
+    user_roles: Prisma.$User_RolesPayload<ExtArgs>[]
+    session: Prisma.$SessionPayload<ExtArgs>[]
+    kycCases: Prisma.$Kyc_CasePayload<ExtArgs>[]
+    transactionLimits: Prisma.$Transaction_LimitPayload<ExtArgs>[]
+    auditLogs: Prisma.$Audit_LogPayload<ExtArgs>[]
+    reviewCases: Prisma.$Review_CasePayload<ExtArgs>[]
+    idempotencyKeys: Prisma.$Idempotency_KeysPayload<ExtArgs>[]
+    notificaions: Prisma.$NotificaionPayload<ExtArgs>[]
+    reconciliationRuns: Prisma.$Reconciliation_RunPayload<ExtArgs>[]
+    initiatedTransactions: Prisma.$TransactionPayload<ExtArgs>[]
+    customer: Prisma.$CustomerPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    name: string
-    email: string
+    first_name: string
+    middle_name: string | null
+    last_name: string
+    email: string | null
+    email_normalized: string | null
+    phone: string | null
+    phone_normalized: string | null
     password: string
+    status: $Enums.Status
+    email_verified_at: Date | null
+    phone_verified_at: Date | null
+    last_login_at: Date | null
     createdAt: Date
     updateAt: Date
   }, ExtArgs["result"]["user"]>
@@ -779,6 +3034,18 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  roleAssignmentsCreated<T extends Prisma.User$roleAssignmentsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roleAssignmentsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$User_RolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user_roles<T extends Prisma.User$user_rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$user_rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$User_RolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  session<T extends Prisma.User$sessionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  kycCases<T extends Prisma.User$kycCasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$kycCasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Kyc_CasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  transactionLimits<T extends Prisma.User$transactionLimitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$transactionLimitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Transaction_LimitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Audit_LogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewCases<T extends Prisma.User$reviewCasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewCasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Review_CasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  idempotencyKeys<T extends Prisma.User$idempotencyKeysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$idempotencyKeysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Idempotency_KeysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notificaions<T extends Prisma.User$notificaionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificaionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificaionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reconciliationRuns<T extends Prisma.User$reconciliationRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reconciliationRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$Reconciliation_RunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  initiatedTransactions<T extends Prisma.User$initiatedTransactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$initiatedTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  customer<T extends Prisma.User$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -809,9 +3076,18 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
-  readonly name: Prisma.FieldRef<"User", 'String'>
+  readonly first_name: Prisma.FieldRef<"User", 'String'>
+  readonly middle_name: Prisma.FieldRef<"User", 'String'>
+  readonly last_name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
+  readonly email_normalized: Prisma.FieldRef<"User", 'String'>
+  readonly phone: Prisma.FieldRef<"User", 'String'>
+  readonly phone_normalized: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
+  readonly status: Prisma.FieldRef<"User", 'Status'>
+  readonly email_verified_at: Prisma.FieldRef<"User", 'DateTime'>
+  readonly phone_verified_at: Prisma.FieldRef<"User", 'DateTime'>
+  readonly last_login_at: Prisma.FieldRef<"User", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updateAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -831,6 +3107,10 @@ export type UserFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -849,6 +3129,10 @@ export type UserFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -866,6 +3150,10 @@ export type UserFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -915,6 +3203,10 @@ export type UserFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -962,6 +3254,10 @@ export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which Users to fetch.
    */
@@ -1011,6 +3307,10 @@ export type UserCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The data needed to create a User.
    */
   data: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>
@@ -1058,6 +3358,10 @@ export type UserUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to update a User.
    */
@@ -1125,6 +3429,10 @@ export type UserUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The filter to search for the User to update in case it exists.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1151,6 +3459,10 @@ export type UserDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter which User to delete.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1171,6 +3483,289 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * User.roleAssignmentsCreated
+ */
+export type User$roleAssignmentsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User_Roles
+   */
+  select?: Prisma.User_RolesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User_Roles
+   */
+  omit?: Prisma.User_RolesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.User_RolesInclude<ExtArgs> | null
+  where?: Prisma.User_RolesWhereInput
+  orderBy?: Prisma.User_RolesOrderByWithRelationInput | Prisma.User_RolesOrderByWithRelationInput[]
+  cursor?: Prisma.User_RolesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.User_RolesScalarFieldEnum | Prisma.User_RolesScalarFieldEnum[]
+}
+
+/**
+ * User.user_roles
+ */
+export type User$user_rolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User_Roles
+   */
+  select?: Prisma.User_RolesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User_Roles
+   */
+  omit?: Prisma.User_RolesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.User_RolesInclude<ExtArgs> | null
+  where?: Prisma.User_RolesWhereInput
+  orderBy?: Prisma.User_RolesOrderByWithRelationInput | Prisma.User_RolesOrderByWithRelationInput[]
+  cursor?: Prisma.User_RolesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.User_RolesScalarFieldEnum | Prisma.User_RolesScalarFieldEnum[]
+}
+
+/**
+ * User.session
+ */
+export type User$sessionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Session
+   */
+  select?: Prisma.SessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Session
+   */
+  omit?: Prisma.SessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
+}
+
+/**
+ * User.kycCases
+ */
+export type User$kycCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Kyc_Case
+   */
+  select?: Prisma.Kyc_CaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Kyc_Case
+   */
+  omit?: Prisma.Kyc_CaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Kyc_CaseInclude<ExtArgs> | null
+  where?: Prisma.Kyc_CaseWhereInput
+  orderBy?: Prisma.Kyc_CaseOrderByWithRelationInput | Prisma.Kyc_CaseOrderByWithRelationInput[]
+  cursor?: Prisma.Kyc_CaseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Kyc_CaseScalarFieldEnum | Prisma.Kyc_CaseScalarFieldEnum[]
+}
+
+/**
+ * User.transactionLimits
+ */
+export type User$transactionLimitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Transaction_Limit
+   */
+  select?: Prisma.Transaction_LimitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Transaction_Limit
+   */
+  omit?: Prisma.Transaction_LimitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Transaction_LimitInclude<ExtArgs> | null
+  where?: Prisma.Transaction_LimitWhereInput
+  orderBy?: Prisma.Transaction_LimitOrderByWithRelationInput | Prisma.Transaction_LimitOrderByWithRelationInput[]
+  cursor?: Prisma.Transaction_LimitWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Transaction_LimitScalarFieldEnum | Prisma.Transaction_LimitScalarFieldEnum[]
+}
+
+/**
+ * User.auditLogs
+ */
+export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Audit_Log
+   */
+  select?: Prisma.Audit_LogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Audit_Log
+   */
+  omit?: Prisma.Audit_LogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Audit_LogInclude<ExtArgs> | null
+  where?: Prisma.Audit_LogWhereInput
+  orderBy?: Prisma.Audit_LogOrderByWithRelationInput | Prisma.Audit_LogOrderByWithRelationInput[]
+  cursor?: Prisma.Audit_LogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Audit_LogScalarFieldEnum | Prisma.Audit_LogScalarFieldEnum[]
+}
+
+/**
+ * User.reviewCases
+ */
+export type User$reviewCasesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review_Case
+   */
+  select?: Prisma.Review_CaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review_Case
+   */
+  omit?: Prisma.Review_CaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Review_CaseInclude<ExtArgs> | null
+  where?: Prisma.Review_CaseWhereInput
+  orderBy?: Prisma.Review_CaseOrderByWithRelationInput | Prisma.Review_CaseOrderByWithRelationInput[]
+  cursor?: Prisma.Review_CaseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Review_CaseScalarFieldEnum | Prisma.Review_CaseScalarFieldEnum[]
+}
+
+/**
+ * User.idempotencyKeys
+ */
+export type User$idempotencyKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Idempotency_Keys
+   */
+  select?: Prisma.Idempotency_KeysSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Idempotency_Keys
+   */
+  omit?: Prisma.Idempotency_KeysOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Idempotency_KeysInclude<ExtArgs> | null
+  where?: Prisma.Idempotency_KeysWhereInput
+  orderBy?: Prisma.Idempotency_KeysOrderByWithRelationInput | Prisma.Idempotency_KeysOrderByWithRelationInput[]
+  cursor?: Prisma.Idempotency_KeysWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Idempotency_KeysScalarFieldEnum | Prisma.Idempotency_KeysScalarFieldEnum[]
+}
+
+/**
+ * User.notificaions
+ */
+export type User$notificaionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notificaion
+   */
+  select?: Prisma.NotificaionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notificaion
+   */
+  omit?: Prisma.NotificaionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificaionInclude<ExtArgs> | null
+  where?: Prisma.NotificaionWhereInput
+  orderBy?: Prisma.NotificaionOrderByWithRelationInput | Prisma.NotificaionOrderByWithRelationInput[]
+  cursor?: Prisma.NotificaionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificaionScalarFieldEnum | Prisma.NotificaionScalarFieldEnum[]
+}
+
+/**
+ * User.reconciliationRuns
+ */
+export type User$reconciliationRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Reconciliation_Run
+   */
+  select?: Prisma.Reconciliation_RunSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Reconciliation_Run
+   */
+  omit?: Prisma.Reconciliation_RunOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Reconciliation_RunInclude<ExtArgs> | null
+  where?: Prisma.Reconciliation_RunWhereInput
+  orderBy?: Prisma.Reconciliation_RunOrderByWithRelationInput | Prisma.Reconciliation_RunOrderByWithRelationInput[]
+  cursor?: Prisma.Reconciliation_RunWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Reconciliation_RunScalarFieldEnum | Prisma.Reconciliation_RunScalarFieldEnum[]
+}
+
+/**
+ * User.initiatedTransactions
+ */
+export type User$initiatedTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Transaction
+   */
+  select?: Prisma.TransactionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Transaction
+   */
+  omit?: Prisma.TransactionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null
+  where?: Prisma.TransactionWhereInput
+  orderBy?: Prisma.TransactionOrderByWithRelationInput | Prisma.TransactionOrderByWithRelationInput[]
+  cursor?: Prisma.TransactionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TransactionScalarFieldEnum | Prisma.TransactionScalarFieldEnum[]
+}
+
+/**
+ * User.customer
+ */
+export type User$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Customer
+   */
+  select?: Prisma.CustomerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Customer
+   */
+  omit?: Prisma.CustomerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CustomerInclude<ExtArgs> | null
+  where?: Prisma.CustomerWhereInput
+}
+
+/**
  * User without action
  */
 export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1182,4 +3777,8 @@ export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
 }

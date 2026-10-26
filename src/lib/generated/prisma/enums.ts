@@ -9,7 +9,232 @@
 * 🟢 You can import this file directly.
 */
 
+export const Account_Hold_Status = {
+  ACTIVE: 'ACTIVE',
+  RELEASED: 'RELEASED',
+  CAPTURED: 'CAPTURED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type Account_Hold_Status = (typeof Account_Hold_Status)[keyof typeof Account_Hold_Status]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const Account_Holder_Relationship = {
+  OWNER: 'OWNER',
+  JOINT_OWNER: 'JOINT_OWNER',
+  AUTHORIZED_SIGNATORY: 'AUTHORIZED_SIGNATORY'
+} as const
+
+export type Account_Holder_Relationship = (typeof Account_Holder_Relationship)[keyof typeof Account_Holder_Relationship]
+
+
+export const Account_Status = {
+  PENDING_VERIFICATION: 'PENDING_VERIFICATION',
+  ACTIVE: 'ACTIVE',
+  FROZEN: 'FROZEN',
+  RESTRICTED: 'RESTRICTED',
+  CLOSED: 'CLOSED'
+} as const
+
+export type Account_Status = (typeof Account_Status)[keyof typeof Account_Status]
+
+
+export const AccountType = {
+  SAVINGS: 'SAVINGS',
+  CURRENT: 'CURRENT'
+} as const
+
+export type AccountType = (typeof AccountType)[keyof typeof AccountType]
+
+
+export const Beneficiary_Status = {
+  PENDING_VERIFICATION: 'PENDING_VERIFICATION',
+  ACTIVE: 'ACTIVE',
+  BLOCKED: 'BLOCKED'
+} as const
+
+export type Beneficiary_Status = (typeof Beneficiary_Status)[keyof typeof Beneficiary_Status]
+
+
+export const Fraud_Alert_Status = {
+  OPEN: 'OPEN',
+  UNDER_REVIEW: 'UNDER_REVIEW',
+  DISMISSED: 'DISMISSED',
+  CONFIRMED: 'CONFIRMED'
+} as const
+
+export type Fraud_Alert_Status = (typeof Fraud_Alert_Status)[keyof typeof Fraud_Alert_Status]
+
+
+export const Severity = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  CRITICAL: 'CRITICAL'
+} as const
+
+export type Severity = (typeof Severity)[keyof typeof Severity]
+
+
+export const Review_Case_Status = {
+  OPEN: 'OPEN',
+  IN_PROGRESS: 'IN_PROGRESS',
+  ESCALATED: 'ESCALATED',
+  RESOLVED: 'RESOLVED'
+} as const
+
+export type Review_Case_Status = (typeof Review_Case_Status)[keyof typeof Review_Case_Status]
+
+
+export const Journal_Entries_Status = {
+  DRAFT: 'DRAFT',
+  POSTED: 'POSTED',
+  REVERSED: 'REVERSED'
+} as const
+
+export type Journal_Entries_Status = (typeof Journal_Entries_Status)[keyof typeof Journal_Entries_Status]
+
+
+export const KYC_Status = {
+  NOT_STARTED: 'NOT_STARTED',
+  PENDING_VERIFICATION: 'PENDING_VERIFICATION',
+  UNDER_REVIEW: 'UNDER_REVIEW',
+  VERIFIED: 'VERIFIED',
+  REJECTED: 'REJECTED',
+  MORE_INFO_REQUIRED: 'MORE_INFO_REQUIRED'
+} as const
+
+export type KYC_Status = (typeof KYC_Status)[keyof typeof KYC_Status]
+
+
+export const KYC_DOC_Status = {
+  SUBMITTED: 'SUBMITTED',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type KYC_DOC_Status = (typeof KYC_DOC_Status)[keyof typeof KYC_DOC_Status]
+
+
+export const Ledger_Account_Status = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type Ledger_Account_Status = (typeof Ledger_Account_Status)[keyof typeof Ledger_Account_Status]
+
+
+export const Ledger_Account_Type = {
+  ASSET: 'ASSET',
+  LIABILITY: 'LIABILITY',
+  EQUITY: 'EQUITY',
+  REVENUE: 'REVENUE',
+  EXPENSE: 'EXPENSE'
+} as const
+
+export type Ledger_Account_Type = (typeof Ledger_Account_Type)[keyof typeof Ledger_Account_Type]
+
+
+export const Side = {
+  DEBIT: 'DEBIT',
+  CREDIT: 'CREDIT'
+} as const
+
+export type Side = (typeof Side)[keyof typeof Side]
+
+
+export const Reconciliation_Run_Status = {
+  RUNNING: 'RUNNING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  DISCREPANCIES_FOUND: 'DISCREPANCIES_FOUND'
+} as const
+
+export type Reconciliation_Run_Status = (typeof Reconciliation_Run_Status)[keyof typeof Reconciliation_Run_Status]
+
+
+export const Scheduled_Transfers_Status = {
+  ACTIVE: 'ACTIVE',
+  PAUSED: 'PAUSED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type Scheduled_Transfers_Status = (typeof Scheduled_Transfers_Status)[keyof typeof Scheduled_Transfers_Status]
+
+
+export const Frequency = {
+  ONCE: 'ONCE',
+  DAILY: 'DAILY',
+  WEEKLY: 'WEEKLY',
+  MONTHLY: 'MONTHLY'
+} as const
+
+export type Frequency = (typeof Frequency)[keyof typeof Frequency]
+
+
+export const Transfer_Attempts_Status = {
+  PROCESSING: 'PROCESSING',
+  SUCCEEDED: 'SUCCEEDED',
+  FAILED: 'FAILED'
+} as const
+
+export type Transfer_Attempts_Status = (typeof Transfer_Attempts_Status)[keyof typeof Transfer_Attempts_Status]
+
+
+export const Transaction_Limit_Status = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type Transaction_Limit_Status = (typeof Transaction_Limit_Status)[keyof typeof Transaction_Limit_Status]
+
+
+export const Fee_Rule_Status = {
+  ACIVE: 'ACIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type Fee_Rule_Status = (typeof Fee_Rule_Status)[keyof typeof Fee_Rule_Status]
+
+
+export const Fee_Type = {
+  FIXED: 'FIXED',
+  PERCENTAGE: 'PERCENTAGE'
+} as const
+
+export type Fee_Type = (typeof Fee_Type)[keyof typeof Fee_Type]
+
+
+export const Transaction_Status = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  POSTED: 'POSTED',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED',
+  REVERSED: 'REVERSED'
+} as const
+
+export type Transaction_Status = (typeof Transaction_Status)[keyof typeof Transaction_Status]
+
+
+export const Transaction_Type = {
+  DEPOSIT: 'DEPOSIT',
+  WITHDRAWAL: 'WITHDRAWAL',
+  TRANSFER: 'TRANSFER',
+  FEE: 'FEE',
+  REVERSAL: 'REVERSAL',
+  ADJUSTMENT: 'ADJUSTMENT'
+} as const
+
+export type Transaction_Type = (typeof Transaction_Type)[keyof typeof Transaction_Type]
+
+
+export const Status = {
+  PENDING_VERIFICATION: 'PENDING_VERIFICATION',
+  ACTIVE: 'ACTIVE',
+  LOCKED: 'LOCKED',
+  DEACTIVATED: 'DEACTIVATED'
+} as const
+
+export type Status = (typeof Status)[keyof typeof Status]

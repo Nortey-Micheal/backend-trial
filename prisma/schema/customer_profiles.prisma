@@ -1,9 +1,6 @@
 model Customer {
   id             String   @id @default(uuid())
   user_id        String   @unique
-  first_name     String
-  middle_name    String?
-  last_name      String
   date_of_birth  DateTime @db.Date
   address_line_1 String
   address_line_2 String?
