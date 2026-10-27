@@ -3,18 +3,20 @@ model User {
   first_name       String
   middle_name      String?
   last_name        String
-  email            String? 
+  email            String?
   email_normalized String? @unique
   phone            String?
   phone_normalized String? @unique
   password         String
 
-  status            Status    @default(PENDING_VERIFICATION)
-  email_verified_at DateTime?
-  phone_verified_at DateTime?
-  last_login_at     DateTime?
-  createdAt         DateTime  @default(now())
-  updateAt          DateTime  @updatedAt
+  status                    Status    @default(PENDING_VERIFICATION)
+  email_verified_at         DateTime?
+  phone_verified_at         DateTime?
+  last_login_at             DateTime?
+  verification_code         String?
+  verification_code_expires DateTime?
+  createdAt                 DateTime  @default(now())
+  updateAt                  DateTime  @updatedAt
 
   roleAssignmentsCreated User_Roles[] @relation("RoleAssignedBy")
 

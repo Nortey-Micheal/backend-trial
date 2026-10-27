@@ -38,6 +38,8 @@ export type UserMinAggregateOutputType = {
   email_verified_at: Date | null
   phone_verified_at: Date | null
   last_login_at: Date | null
+  verification_code: string | null
+  verification_code_expires: Date | null
   createdAt: Date | null
   updateAt: Date | null
 }
@@ -56,6 +58,8 @@ export type UserMaxAggregateOutputType = {
   email_verified_at: Date | null
   phone_verified_at: Date | null
   last_login_at: Date | null
+  verification_code: string | null
+  verification_code_expires: Date | null
   createdAt: Date | null
   updateAt: Date | null
 }
@@ -74,6 +78,8 @@ export type UserCountAggregateOutputType = {
   email_verified_at: number
   phone_verified_at: number
   last_login_at: number
+  verification_code: number
+  verification_code_expires: number
   createdAt: number
   updateAt: number
   _all: number
@@ -94,6 +100,8 @@ export type UserMinAggregateInputType = {
   email_verified_at?: true
   phone_verified_at?: true
   last_login_at?: true
+  verification_code?: true
+  verification_code_expires?: true
   createdAt?: true
   updateAt?: true
 }
@@ -112,6 +120,8 @@ export type UserMaxAggregateInputType = {
   email_verified_at?: true
   phone_verified_at?: true
   last_login_at?: true
+  verification_code?: true
+  verification_code_expires?: true
   createdAt?: true
   updateAt?: true
 }
@@ -130,6 +140,8 @@ export type UserCountAggregateInputType = {
   email_verified_at?: true
   phone_verified_at?: true
   last_login_at?: true
+  verification_code?: true
+  verification_code_expires?: true
   createdAt?: true
   updateAt?: true
   _all?: true
@@ -221,6 +233,8 @@ export type UserGroupByOutputType = {
   email_verified_at: Date | null
   phone_verified_at: Date | null
   last_login_at: Date | null
+  verification_code: string | null
+  verification_code_expires: Date | null
   createdAt: Date
   updateAt: Date
   _count: UserCountAggregateOutputType | null
@@ -260,6 +274,8 @@ export type UserWhereInput = {
   email_verified_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   phone_verified_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   last_login_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  verification_code?: Prisma.StringNullableFilter<"User"> | string | null
+  verification_code_expires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updateAt?: Prisma.DateTimeFilter<"User"> | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesListRelationFilter
@@ -290,6 +306,8 @@ export type UserOrderByWithRelationInput = {
   email_verified_at?: Prisma.SortOrderInput | Prisma.SortOrder
   phone_verified_at?: Prisma.SortOrderInput | Prisma.SortOrder
   last_login_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  verification_code?: Prisma.SortOrderInput | Prisma.SortOrder
+  verification_code_expires?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
   roleAssignmentsCreated?: Prisma.User_RolesOrderByRelationAggregateInput
@@ -323,6 +341,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   email_verified_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   phone_verified_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   last_login_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  verification_code?: Prisma.StringNullableFilter<"User"> | string | null
+  verification_code_expires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updateAt?: Prisma.DateTimeFilter<"User"> | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesListRelationFilter
@@ -353,6 +373,8 @@ export type UserOrderByWithAggregationInput = {
   email_verified_at?: Prisma.SortOrderInput | Prisma.SortOrder
   phone_verified_at?: Prisma.SortOrderInput | Prisma.SortOrder
   last_login_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  verification_code?: Prisma.SortOrderInput | Prisma.SortOrder
+  verification_code_expires?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -377,6 +399,8 @@ export type UserScalarWhereWithAggregatesInput = {
   email_verified_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   phone_verified_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   last_login_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  verification_code?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  verification_code_expires?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updateAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -395,6 +419,8 @@ export type UserCreateInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -425,6 +451,8 @@ export type UserUncheckedCreateInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -455,6 +483,8 @@ export type UserUpdateInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -485,6 +515,8 @@ export type UserUncheckedUpdateInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -515,6 +547,8 @@ export type UserCreateManyInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
 }
@@ -533,6 +567,8 @@ export type UserUpdateManyMutationInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -551,6 +587,8 @@ export type UserUncheckedUpdateManyInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -579,6 +617,8 @@ export type UserCountOrderByAggregateInput = {
   email_verified_at?: Prisma.SortOrder
   phone_verified_at?: Prisma.SortOrder
   last_login_at?: Prisma.SortOrder
+  verification_code?: Prisma.SortOrder
+  verification_code_expires?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
 }
@@ -597,6 +637,8 @@ export type UserMaxOrderByAggregateInput = {
   email_verified_at?: Prisma.SortOrder
   phone_verified_at?: Prisma.SortOrder
   last_login_at?: Prisma.SortOrder
+  verification_code?: Prisma.SortOrder
+  verification_code_expires?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
 }
@@ -615,6 +657,8 @@ export type UserMinOrderByAggregateInput = {
   email_verified_at?: Prisma.SortOrder
   phone_verified_at?: Prisma.SortOrder
   last_login_at?: Prisma.SortOrder
+  verification_code?: Prisma.SortOrder
+  verification_code_expires?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
 }
@@ -813,6 +857,8 @@ export type UserCreateWithoutAuditLogsInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -842,6 +888,8 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -887,6 +935,8 @@ export type UserUpdateWithoutAuditLogsInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -916,6 +966,8 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -945,6 +997,8 @@ export type UserCreateWithoutCustomerInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -974,6 +1028,8 @@ export type UserUncheckedCreateWithoutCustomerInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1019,6 +1075,8 @@ export type UserUpdateWithoutCustomerInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -1048,6 +1106,8 @@ export type UserUncheckedUpdateWithoutCustomerInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1077,6 +1137,8 @@ export type UserCreateWithoutReviewCasesInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -1106,6 +1168,8 @@ export type UserUncheckedCreateWithoutReviewCasesInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1151,6 +1215,8 @@ export type UserUpdateWithoutReviewCasesInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -1180,6 +1246,8 @@ export type UserUncheckedUpdateWithoutReviewCasesInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1209,6 +1277,8 @@ export type UserCreateWithoutIdempotencyKeysInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -1238,6 +1308,8 @@ export type UserUncheckedCreateWithoutIdempotencyKeysInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1283,6 +1355,8 @@ export type UserUpdateWithoutIdempotencyKeysInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -1312,6 +1386,8 @@ export type UserUncheckedUpdateWithoutIdempotencyKeysInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1341,6 +1417,8 @@ export type UserCreateWithoutKycCasesInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -1370,6 +1448,8 @@ export type UserUncheckedCreateWithoutKycCasesInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1415,6 +1495,8 @@ export type UserUpdateWithoutKycCasesInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -1444,6 +1526,8 @@ export type UserUncheckedUpdateWithoutKycCasesInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1473,6 +1557,8 @@ export type UserCreateWithoutNotificaionsInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -1502,6 +1588,8 @@ export type UserUncheckedCreateWithoutNotificaionsInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1547,6 +1635,8 @@ export type UserUpdateWithoutNotificaionsInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -1576,6 +1666,8 @@ export type UserUncheckedUpdateWithoutNotificaionsInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1605,6 +1697,8 @@ export type UserCreateWithoutReconciliationRunsInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -1634,6 +1728,8 @@ export type UserUncheckedCreateWithoutReconciliationRunsInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1679,6 +1775,8 @@ export type UserUpdateWithoutReconciliationRunsInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -1708,6 +1806,8 @@ export type UserUncheckedUpdateWithoutReconciliationRunsInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1737,6 +1837,8 @@ export type UserCreateWithoutSessionInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -1766,6 +1868,8 @@ export type UserUncheckedCreateWithoutSessionInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1811,6 +1915,8 @@ export type UserUpdateWithoutSessionInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -1840,6 +1946,8 @@ export type UserUncheckedUpdateWithoutSessionInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1869,6 +1977,8 @@ export type UserCreateWithoutTransactionLimitsInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -1898,6 +2008,8 @@ export type UserUncheckedCreateWithoutTransactionLimitsInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1943,6 +2055,8 @@ export type UserUpdateWithoutTransactionLimitsInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -1972,6 +2086,8 @@ export type UserUncheckedUpdateWithoutTransactionLimitsInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -2001,6 +2117,8 @@ export type UserCreateWithoutInitiatedTransactionsInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -2030,6 +2148,8 @@ export type UserUncheckedCreateWithoutInitiatedTransactionsInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -2075,6 +2195,8 @@ export type UserUpdateWithoutInitiatedTransactionsInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -2104,6 +2226,8 @@ export type UserUncheckedUpdateWithoutInitiatedTransactionsInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -2133,6 +2257,8 @@ export type UserCreateWithoutUser_rolesInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesCreateNestedManyWithoutAssignedByInput
@@ -2162,6 +2288,8 @@ export type UserUncheckedCreateWithoutUser_rolesInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedCreateNestedManyWithoutAssignedByInput
@@ -2196,6 +2324,8 @@ export type UserCreateWithoutRoleAssignmentsCreatedInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   user_roles?: Prisma.User_RolesCreateNestedManyWithoutUserInput
@@ -2225,6 +2355,8 @@ export type UserUncheckedCreateWithoutRoleAssignmentsCreatedInput = {
   email_verified_at?: Date | string | null
   phone_verified_at?: Date | string | null
   last_login_at?: Date | string | null
+  verification_code?: string | null
+  verification_code_expires?: Date | string | null
   createdAt?: Date | string
   updateAt?: Date | string
   user_roles?: Prisma.User_RolesUncheckedCreateNestedManyWithoutUserInput
@@ -2270,6 +2402,8 @@ export type UserUpdateWithoutUser_rolesInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUpdateManyWithoutAssignedByNestedInput
@@ -2299,6 +2433,8 @@ export type UserUncheckedUpdateWithoutUser_rolesInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roleAssignmentsCreated?: Prisma.User_RolesUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -2339,6 +2475,8 @@ export type UserUpdateWithoutRoleAssignmentsCreatedInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_roles?: Prisma.User_RolesUpdateManyWithoutUserNestedInput
@@ -2368,6 +2506,8 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsCreatedInput = {
   email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   phone_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verification_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_code_expires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_roles?: Prisma.User_RolesUncheckedUpdateManyWithoutUserNestedInput
@@ -2518,6 +2658,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email_verified_at?: boolean
   phone_verified_at?: boolean
   last_login_at?: boolean
+  verification_code?: boolean
+  verification_code_expires?: boolean
   createdAt?: boolean
   updateAt?: boolean
   roleAssignmentsCreated?: boolean | Prisma.User$roleAssignmentsCreatedArgs<ExtArgs>
@@ -2549,6 +2691,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email_verified_at?: boolean
   phone_verified_at?: boolean
   last_login_at?: boolean
+  verification_code?: boolean
+  verification_code_expires?: boolean
   createdAt?: boolean
   updateAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -2567,6 +2711,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email_verified_at?: boolean
   phone_verified_at?: boolean
   last_login_at?: boolean
+  verification_code?: boolean
+  verification_code_expires?: boolean
   createdAt?: boolean
   updateAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -2585,11 +2731,13 @@ export type UserSelectScalar = {
   email_verified_at?: boolean
   phone_verified_at?: boolean
   last_login_at?: boolean
+  verification_code?: boolean
+  verification_code_expires?: boolean
   createdAt?: boolean
   updateAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "first_name" | "middle_name" | "last_name" | "email" | "email_normalized" | "phone" | "phone_normalized" | "password" | "status" | "email_verified_at" | "phone_verified_at" | "last_login_at" | "createdAt" | "updateAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "first_name" | "middle_name" | "last_name" | "email" | "email_normalized" | "phone" | "phone_normalized" | "password" | "status" | "email_verified_at" | "phone_verified_at" | "last_login_at" | "verification_code" | "verification_code_expires" | "createdAt" | "updateAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   roleAssignmentsCreated?: boolean | Prisma.User$roleAssignmentsCreatedArgs<ExtArgs>
   user_roles?: boolean | Prisma.User$user_rolesArgs<ExtArgs>
@@ -2638,6 +2786,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email_verified_at: Date | null
     phone_verified_at: Date | null
     last_login_at: Date | null
+    verification_code: string | null
+    verification_code_expires: Date | null
     createdAt: Date
     updateAt: Date
   }, ExtArgs["result"]["user"]>
@@ -3088,6 +3238,8 @@ export interface UserFieldRefs {
   readonly email_verified_at: Prisma.FieldRef<"User", 'DateTime'>
   readonly phone_verified_at: Prisma.FieldRef<"User", 'DateTime'>
   readonly last_login_at: Prisma.FieldRef<"User", 'DateTime'>
+  readonly verification_code: Prisma.FieldRef<"User", 'String'>
+  readonly verification_code_expires: Prisma.FieldRef<"User", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updateAt: Prisma.FieldRef<"User", 'DateTime'>
 }
