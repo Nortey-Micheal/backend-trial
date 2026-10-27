@@ -2,7 +2,14 @@ import { Request, Response } from "express";
 import validator from 'validator'
 import { prisma } from "../../lib/prisma.js";
 import bcrypt from "bcryptjs";
-import { createHmac, randomInt, timingSafeEqual } from "node:crypto";
+import jwt from 'jsonwebtoken'
+import { createHash, createHmac, randomBytes, randomInt, randomUUID, timingSafeEqual } from "node:crypto";
+import { Status } from "../../lib/generated/prisma/enums.js";
+
+const ACCESS_TOKEN_TTL='15m'
+const SESSION_TTL_MS=30*24*60*60*1000
+
+const hashToken=(token:string)=>createHash('sha256').update(token).digest('hex')
 
 export const register = async (req: Request, res: Response) => {
   const { email, phone, password, firstName, middleName, lastName, dateOfBirth } = req.body
@@ -92,49 +99,139 @@ export const register = async (req: Request, res: Response) => {
   }
 }
 
-export const login = async (req:Request,res:Response) => {
-  const { email, phone, password } = req.body
+export const login=async(req:Request,res:Response)=>{
+  const {email,phone,password}=req.body
 
-  if (!email && !phone) {
-    return res.status(403).json({success: false, message: 'Please enter a valid email address or phone number.'})
+  if((!email&&!phone)||!password){
+    return res.status(400).json({success:false,message:'Email or phone and password are required.'})
   }
 
-  //"phone": "+233234255443",
-  
-  if (email?.lenght > 0 &&!validator.isEmail(email)) {
-    return res.status(403).json({success: false, message: 'Please enter a valid email address.'})
+  if(email&&phone){
+    return res.status(400).json({success:false,message:'Provide either email or phone, not both.'})
   }
 
-  try {
-    const normalizedEmail = email ? email.trim().toLowerCase() : ''
-    const normalizedPhone = phone ? phone?.trim() : ''
+  if(email&&(!validator.isEmail(email.trim()))){
+    return res.status(400).json({success:false,message:'Please enter a valid email address.'})
+  }
 
-    const user = await prisma.user.findFirst({
-      where: {
-        OR: [
-          { email_normalized: normalizedEmail },
-          { phone_normalized: normalizedPhone }
-        ]
-      }
+  if(phone&&typeof phone!=='string'){
+    return res.status(400).json({success:false,message:'Please enter a valid phone number.'})
+  }
+
+  if(typeof password!=='string'||password.length===0){
+    return res.status(400).json({success:false,message:'Password is required.'})
+  }
+
+  try{
+    const normalizedEmail=email?email.trim().toLowerCase():undefined
+    const normalizedPhone=phone?phone.trim():undefined
+
+    const user=await prisma.user.findUnique({
+      where:normalizedEmail?{email_normalized:normalizedEmail}:{phone_normalized:normalizedPhone}
     })
 
-    if (!user) {
-      return res.status(403).json({success:false, message: 'Invalid login credentials'})
+    if(!user){
+      return res.status(401).json({success:false,message:'Invalid login credentials.'})
     }
 
-    const isValidPassword = await bcrypt.compare(password, user.password)
+    const isValidPassword=await bcrypt.compare(password,user.password)
 
-    if (!isValidPassword) {
-      return res.status(401).json({success:false, message: 'Invalid login credentials'})
+    if(!isValidPassword){
+      return res.status(401).json({success:false,message:'Invalid login credentials.'})
     }
 
-    return res.status(200).json({success: true, message: 'Login successful',user: {...user, password: undefined, email_normalized: undefined, phone_normalized: undefined, verification_code: undefined, verification_code_expires: undefined} })
+    if(!user.email_verified_at){
+      return res.status(403).json({success:false,message:'Please verify your email before logging in.'})
+    }
 
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({success: false, message: 'Unable to complete login. Please try again later.'})
+    const accessSecret=process.env.JWT_ACCESS_SECRET
+
+    if(!accessSecret){
+      throw new Error('JWT_ACCESS_SECRET is not configured')
+    }
+
+    const now=new Date()
+    const sessionExpiresAt=new Date(now.getTime()+SESSION_TTL_MS)
+    const refreshToken=randomBytes(64).toString('hex')
+    const familyId=randomUUID()
+
+    const session=await prisma.$transaction(async(tx)=>{
+      const createdSession=await tx.session.create({
+        data:{
+          user_id:user.id,
+          ip_address:req.ip,
+          user_agent:req.get('user-agent')??null,
+          expires_at:sessionExpiresAt
+        }
+      })
+
+      await tx.refresh_token.create({
+        data:{
+          session_id:createdSession.id,
+          token_hash:hashToken(refreshToken),
+          family_id:familyId,
+          expires_at:sessionExpiresAt
+        }
+      })
+
+      await tx.user.update({
+        where:{id:user.id},
+        data:{last_login_at:now}
+      })
+
+      return createdSession
+    })
+
+    const accessToken=jwt.sign(
+      {sid:session.id},
+      accessSecret,
+      {subject:user.id,expiresIn:ACCESS_TOKEN_TTL}
+    )
+
+    const roleAssignments=await prisma.user_Roles.findMany({
+      where:{user_id:user.id},
+      select:{role:{select:{name:true}}}
+    })
+
+    const safeUser={
+      id:user.id,
+      first_name:user.first_name,
+      middle_name:user.middle_name,
+      last_name:user.last_name,
+      email:user.email,
+      phone:user.phone,
+      status:user.status,
+      roles:roleAssignments.map(item=>item.role.name)
+    }
+
+    const isProduction=process.env.NODE_ENV==='production'
+
+    res.cookie('accessToken',accessToken,{
+      httpOnly:true,
+      secure:isProduction,
+      sameSite:'lax',
+      maxAge:15*60*1000,
+      path:'/'
+    })
+
+    res.cookie('refreshToken',refreshToken,{
+      httpOnly:true,
+      secure:isProduction,
+      sameSite:'lax',
+      maxAge:SESSION_TTL_MS,
+      path:'/auth'
+    })
+
+    return res.status(200).json({
+      success:true,
+      message:'Login successful.',
+      user:safeUser
+    })
+    
+  }catch(error){
+    console.error('Login error:',error)
+    return res.status(500).json({success:false,message:'Unable to complete login. Please try again later.'})
   }
-  
 }
 
 export const refresh = async (req:Request,res:Response) => {
