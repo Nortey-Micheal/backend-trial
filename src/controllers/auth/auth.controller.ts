@@ -291,16 +291,7 @@ export const refresh = async(req:Request,res:Response)=>{
         },
       });
 
-      console.log('Refresh token state:', {
-        usedAt: storedToken?.used_at,
-        revokedAt: storedToken?.revoked_at,
-        expiresAt: storedToken?.expires_at,
-        sessionId: storedToken?.session_id,
-      });
-
       if (!storedToken) {
-        console.log('Refresh token not found in database:', tokenHash);
-
         return { error: 'INVALID_TOKEN' as const };
       }
 
@@ -325,22 +316,11 @@ export const refresh = async(req:Request,res:Response)=>{
           data: { revoked_at: now },
         });
 
-        console.log('TOKEN_REUSE branch reached');
-
         return { error: 'TOKEN_REUSE' as const };
       }
 
       const { session } = storedToken;
       const user = session.user;
-
-      console.log('Refresh validation:', {
-        tokenExpired: storedToken.expires_at <= now,
-        sessionExpired: session.expires_at <= now,
-        sessionRevoked: session.revoked_at,
-        userStatus: user.status,
-        tokenId: storedToken.id,
-        sessionId: session.id,
-      });
 
       // Each condition checks a separate reason the session cannot
       // continue:
@@ -438,8 +418,6 @@ export const refresh = async(req:Request,res:Response)=>{
         message: 'Session expired or invalid. Please log in again.',
       });
     }
-
-    console.log(result)
 
     const accessToken = jwt.sign(
       { sid: result.sessionId },
