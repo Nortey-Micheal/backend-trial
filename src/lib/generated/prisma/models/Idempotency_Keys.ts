@@ -66,7 +66,7 @@ export type Idempotency_KeysCountAggregateOutputType = {
   request_hash: number
   resource_id: number
   response_status: number
-  resonse_body: number
+  response_body: number
   created_at: number
   expires_at: number
   _all: number
@@ -113,7 +113,7 @@ export type Idempotency_KeysCountAggregateInputType = {
   request_hash?: true
   resource_id?: true
   response_status?: true
-  resonse_body?: true
+  response_body?: true
   created_at?: true
   expires_at?: true
   _all?: true
@@ -213,7 +213,7 @@ export type Idempotency_KeysGroupByOutputType = {
   request_hash: string
   resource_id: string | null
   response_status: number | null
-  resonse_body: runtime.JsonValue
+  response_body: runtime.JsonValue | null
   created_at: Date
   expires_at: Date
   _count: Idempotency_KeysCountAggregateOutputType | null
@@ -249,7 +249,7 @@ export type Idempotency_KeysWhereInput = {
   request_hash?: Prisma.StringFilter<"Idempotency_Keys"> | string
   resource_id?: Prisma.StringNullableFilter<"Idempotency_Keys"> | string | null
   response_status?: Prisma.IntNullableFilter<"Idempotency_Keys"> | number | null
-  resonse_body?: Prisma.JsonFilter<"Idempotency_Keys">
+  response_body?: Prisma.JsonNullableFilter<"Idempotency_Keys">
   created_at?: Prisma.DateTimeFilter<"Idempotency_Keys"> | Date | string
   expires_at?: Prisma.DateTimeFilter<"Idempotency_Keys"> | Date | string
   actor_user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -264,7 +264,7 @@ export type Idempotency_KeysOrderByWithRelationInput = {
   request_hash?: Prisma.SortOrder
   resource_id?: Prisma.SortOrderInput | Prisma.SortOrder
   response_status?: Prisma.SortOrderInput | Prisma.SortOrder
-  resonse_body?: Prisma.SortOrder
+  response_body?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   expires_at?: Prisma.SortOrder
   actor_user?: Prisma.UserOrderByWithRelationInput
@@ -283,7 +283,7 @@ export type Idempotency_KeysWhereUniqueInput = Prisma.AtLeast<{
   request_hash?: Prisma.StringFilter<"Idempotency_Keys"> | string
   resource_id?: Prisma.StringNullableFilter<"Idempotency_Keys"> | string | null
   response_status?: Prisma.IntNullableFilter<"Idempotency_Keys"> | number | null
-  resonse_body?: Prisma.JsonFilter<"Idempotency_Keys">
+  response_body?: Prisma.JsonNullableFilter<"Idempotency_Keys">
   created_at?: Prisma.DateTimeFilter<"Idempotency_Keys"> | Date | string
   expires_at?: Prisma.DateTimeFilter<"Idempotency_Keys"> | Date | string
   actor_user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -298,7 +298,7 @@ export type Idempotency_KeysOrderByWithAggregationInput = {
   request_hash?: Prisma.SortOrder
   resource_id?: Prisma.SortOrderInput | Prisma.SortOrder
   response_status?: Prisma.SortOrderInput | Prisma.SortOrder
-  resonse_body?: Prisma.SortOrder
+  response_body?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   expires_at?: Prisma.SortOrder
   _count?: Prisma.Idempotency_KeysCountOrderByAggregateInput
@@ -319,7 +319,7 @@ export type Idempotency_KeysScalarWhereWithAggregatesInput = {
   request_hash?: Prisma.StringWithAggregatesFilter<"Idempotency_Keys"> | string
   resource_id?: Prisma.StringNullableWithAggregatesFilter<"Idempotency_Keys"> | string | null
   response_status?: Prisma.IntNullableWithAggregatesFilter<"Idempotency_Keys"> | number | null
-  resonse_body?: Prisma.JsonWithAggregatesFilter<"Idempotency_Keys">
+  response_body?: Prisma.JsonNullableWithAggregatesFilter<"Idempotency_Keys">
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Idempotency_Keys"> | Date | string
   expires_at?: Prisma.DateTimeWithAggregatesFilter<"Idempotency_Keys"> | Date | string
 }
@@ -331,7 +331,7 @@ export type Idempotency_KeysCreateInput = {
   request_hash: string
   resource_id?: string | null
   response_status?: number | null
-  resonse_body: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at: Date | string
   expires_at: Date | string
   actor_user: Prisma.UserCreateNestedOneWithoutIdempotencyKeysInput
@@ -346,7 +346,7 @@ export type Idempotency_KeysUncheckedCreateInput = {
   request_hash: string
   resource_id?: string | null
   response_status?: number | null
-  resonse_body: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at: Date | string
   expires_at: Date | string
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutIdempotency_keyInput
@@ -359,7 +359,7 @@ export type Idempotency_KeysUpdateInput = {
   request_hash?: Prisma.StringFieldUpdateOperationsInput | string
   resource_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   response_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  resonse_body?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_user?: Prisma.UserUpdateOneRequiredWithoutIdempotencyKeysNestedInput
@@ -374,7 +374,7 @@ export type Idempotency_KeysUncheckedUpdateInput = {
   request_hash?: Prisma.StringFieldUpdateOperationsInput | string
   resource_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   response_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  resonse_body?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutIdempotency_keyNestedInput
@@ -388,7 +388,7 @@ export type Idempotency_KeysCreateManyInput = {
   request_hash: string
   resource_id?: string | null
   response_status?: number | null
-  resonse_body: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at: Date | string
   expires_at: Date | string
 }
@@ -400,7 +400,7 @@ export type Idempotency_KeysUpdateManyMutationInput = {
   request_hash?: Prisma.StringFieldUpdateOperationsInput | string
   resource_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   response_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  resonse_body?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -413,7 +413,7 @@ export type Idempotency_KeysUncheckedUpdateManyInput = {
   request_hash?: Prisma.StringFieldUpdateOperationsInput | string
   resource_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   response_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  resonse_body?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -432,7 +432,7 @@ export type Idempotency_KeysCountOrderByAggregateInput = {
   request_hash?: Prisma.SortOrder
   resource_id?: Prisma.SortOrder
   response_status?: Prisma.SortOrder
-  resonse_body?: Prisma.SortOrder
+  response_body?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   expires_at?: Prisma.SortOrder
 }
@@ -555,7 +555,7 @@ export type Idempotency_KeysCreateWithoutTransactionsInput = {
   request_hash: string
   resource_id?: string | null
   response_status?: number | null
-  resonse_body: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at: Date | string
   expires_at: Date | string
   actor_user: Prisma.UserCreateNestedOneWithoutIdempotencyKeysInput
@@ -569,7 +569,7 @@ export type Idempotency_KeysUncheckedCreateWithoutTransactionsInput = {
   request_hash: string
   resource_id?: string | null
   response_status?: number | null
-  resonse_body: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at: Date | string
   expires_at: Date | string
 }
@@ -597,7 +597,7 @@ export type Idempotency_KeysUpdateWithoutTransactionsInput = {
   request_hash?: Prisma.StringFieldUpdateOperationsInput | string
   resource_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   response_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  resonse_body?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_user?: Prisma.UserUpdateOneRequiredWithoutIdempotencyKeysNestedInput
@@ -611,7 +611,7 @@ export type Idempotency_KeysUncheckedUpdateWithoutTransactionsInput = {
   request_hash?: Prisma.StringFieldUpdateOperationsInput | string
   resource_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   response_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  resonse_body?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -623,7 +623,7 @@ export type Idempotency_KeysCreateWithoutActor_userInput = {
   request_hash: string
   resource_id?: string | null
   response_status?: number | null
-  resonse_body: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at: Date | string
   expires_at: Date | string
   transactions?: Prisma.TransactionCreateNestedManyWithoutIdempotency_keyInput
@@ -636,7 +636,7 @@ export type Idempotency_KeysUncheckedCreateWithoutActor_userInput = {
   request_hash: string
   resource_id?: string | null
   response_status?: number | null
-  resonse_body: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at: Date | string
   expires_at: Date | string
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutIdempotency_keyInput
@@ -679,7 +679,7 @@ export type Idempotency_KeysScalarWhereInput = {
   request_hash?: Prisma.StringFilter<"Idempotency_Keys"> | string
   resource_id?: Prisma.StringNullableFilter<"Idempotency_Keys"> | string | null
   response_status?: Prisma.IntNullableFilter<"Idempotency_Keys"> | number | null
-  resonse_body?: Prisma.JsonFilter<"Idempotency_Keys">
+  response_body?: Prisma.JsonNullableFilter<"Idempotency_Keys">
   created_at?: Prisma.DateTimeFilter<"Idempotency_Keys"> | Date | string
   expires_at?: Prisma.DateTimeFilter<"Idempotency_Keys"> | Date | string
 }
@@ -691,7 +691,7 @@ export type Idempotency_KeysCreateManyActor_userInput = {
   request_hash: string
   resource_id?: string | null
   response_status?: number | null
-  resonse_body: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at: Date | string
   expires_at: Date | string
 }
@@ -703,7 +703,7 @@ export type Idempotency_KeysUpdateWithoutActor_userInput = {
   request_hash?: Prisma.StringFieldUpdateOperationsInput | string
   resource_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   response_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  resonse_body?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transactions?: Prisma.TransactionUpdateManyWithoutIdempotency_keyNestedInput
@@ -716,7 +716,7 @@ export type Idempotency_KeysUncheckedUpdateWithoutActor_userInput = {
   request_hash?: Prisma.StringFieldUpdateOperationsInput | string
   resource_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   response_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  resonse_body?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutIdempotency_keyNestedInput
@@ -729,7 +729,7 @@ export type Idempotency_KeysUncheckedUpdateManyWithoutActor_userInput = {
   request_hash?: Prisma.StringFieldUpdateOperationsInput | string
   resource_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   response_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  resonse_body?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  response_body?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -773,7 +773,7 @@ export type Idempotency_KeysSelect<ExtArgs extends runtime.Types.Extensions.Inte
   request_hash?: boolean
   resource_id?: boolean
   response_status?: boolean
-  resonse_body?: boolean
+  response_body?: boolean
   created_at?: boolean
   expires_at?: boolean
   actor_user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -789,7 +789,7 @@ export type Idempotency_KeysSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   request_hash?: boolean
   resource_id?: boolean
   response_status?: boolean
-  resonse_body?: boolean
+  response_body?: boolean
   created_at?: boolean
   expires_at?: boolean
   actor_user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -803,7 +803,7 @@ export type Idempotency_KeysSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   request_hash?: boolean
   resource_id?: boolean
   response_status?: boolean
-  resonse_body?: boolean
+  response_body?: boolean
   created_at?: boolean
   expires_at?: boolean
   actor_user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -817,12 +817,12 @@ export type Idempotency_KeysSelectScalar = {
   request_hash?: boolean
   resource_id?: boolean
   response_status?: boolean
-  resonse_body?: boolean
+  response_body?: boolean
   created_at?: boolean
   expires_at?: boolean
 }
 
-export type Idempotency_KeysOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "actor_user_id" | "operation" | "key" | "request_hash" | "resource_id" | "response_status" | "resonse_body" | "created_at" | "expires_at", ExtArgs["result"]["idempotency_Keys"]>
+export type Idempotency_KeysOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "actor_user_id" | "operation" | "key" | "request_hash" | "resource_id" | "response_status" | "response_body" | "created_at" | "expires_at", ExtArgs["result"]["idempotency_Keys"]>
 export type Idempotency_KeysInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   actor_user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   transactions?: boolean | Prisma.Idempotency_Keys$transactionsArgs<ExtArgs>
@@ -849,7 +849,7 @@ export type $Idempotency_KeysPayload<ExtArgs extends runtime.Types.Extensions.In
     request_hash: string
     resource_id: string | null
     response_status: number | null
-    resonse_body: runtime.JsonValue
+    response_body: runtime.JsonValue | null
     created_at: Date
     expires_at: Date
   }, ExtArgs["result"]["idempotency_Keys"]>
@@ -1284,7 +1284,7 @@ export interface Idempotency_KeysFieldRefs {
   readonly request_hash: Prisma.FieldRef<"Idempotency_Keys", 'String'>
   readonly resource_id: Prisma.FieldRef<"Idempotency_Keys", 'String'>
   readonly response_status: Prisma.FieldRef<"Idempotency_Keys", 'Int'>
-  readonly resonse_body: Prisma.FieldRef<"Idempotency_Keys", 'Json'>
+  readonly response_body: Prisma.FieldRef<"Idempotency_Keys", 'Json'>
   readonly created_at: Prisma.FieldRef<"Idempotency_Keys", 'DateTime'>
   readonly expires_at: Prisma.FieldRef<"Idempotency_Keys", 'DateTime'>
 }

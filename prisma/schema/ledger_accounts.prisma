@@ -1,6 +1,6 @@
 model Ledger_Account {
   id                String                @id @default(uuid())
-  code              String
+  code              String                @unique
   name              String
   account_type      Ledger_Account_Type
   currency_code     String

@@ -6,7 +6,7 @@ model Idempotency_Keys {
   request_hash    String   @db.VarChar(128)
   resource_id     String?
   response_status Int?
-  resonse_body    Json     @db.JsonB
+  response_body   Json?    @db.JsonB
   created_at      DateTime
   expires_at      DateTime
 

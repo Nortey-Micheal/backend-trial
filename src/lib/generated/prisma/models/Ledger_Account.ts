@@ -236,10 +236,10 @@ export type Ledger_AccountOrderByWithRelationInput = {
 
 export type Ledger_AccountWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  code?: string
   AND?: Prisma.Ledger_AccountWhereInput | Prisma.Ledger_AccountWhereInput[]
   OR?: Prisma.Ledger_AccountWhereInput[]
   NOT?: Prisma.Ledger_AccountWhereInput | Prisma.Ledger_AccountWhereInput[]
-  code?: Prisma.StringFilter<"Ledger_Account"> | string
   name?: Prisma.StringFilter<"Ledger_Account"> | string
   account_type?: Prisma.EnumLedger_Account_TypeFilter<"Ledger_Account"> | $Enums.Ledger_Account_Type
   currency_code?: Prisma.StringFilter<"Ledger_Account"> | string
@@ -250,7 +250,7 @@ export type Ledger_AccountWhereUniqueInput = Prisma.AtLeast<{
   bankAccount?: Prisma.XOR<Prisma.Bank_AccountNullableScalarRelationFilter, Prisma.Bank_AccountWhereInput> | null
   customers?: Prisma.CustomerListRelationFilter
   ledgerPostings?: Prisma.Ledger_PostingsListRelationFilter
-}, "id">
+}, "id" | "code">
 
 export type Ledger_AccountOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

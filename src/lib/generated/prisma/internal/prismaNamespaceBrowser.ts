@@ -232,7 +232,7 @@ export const Idempotency_KeysScalarFieldEnum = {
   request_hash: 'request_hash',
   resource_id: 'resource_id',
   response_status: 'response_status',
-  resonse_body: 'resonse_body',
+  response_body: 'response_body',
   created_at: 'created_at',
   expires_at: 'expires_at'
 } as const
