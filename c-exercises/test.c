@@ -1,0 +1,7 @@
+#include <assert.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int bounded_copy(char *,size_t,const char *);int checked_sum(const int64_t *,size_t,int64_t *);int parse_amount(const char *,int64_t *);
+int main(void){char b[5];assert(bounded_copy(b,sizeof b,"abc")==3&&strcmp(b,"abc")==0);assert(bounded_copy(b,sizeof b,"abcdef")==4&&strcmp(b,"abcd")==0);assert(bounded_copy(b,sizeof b,"")==0);assert(bounded_copy(b,0,"x")==-1);assert(bounded_copy(NULL,5,"x")==-1);char *huge=malloc(1000001);assert(huge);memset(huge,'x',1000000);huge[1000000]='\0';assert(bounded_copy(b,sizeof b,huge)==4);free(huge);int64_t v[]={1,2,3},sum=0;assert(checked_sum(v,3,&sum)==0&&sum==6);assert(checked_sum(NULL,0,&sum)==0&&sum==0);int64_t hi[]={INT64_MAX,1},lo[]={INT64_MIN,-1};sum=7;assert(checked_sum(hi,2,&sum)==-1&&sum==7);assert(checked_sum(lo,2,&sum)==-1&&sum==7);assert(checked_sum(NULL,1,&sum)==-1);assert(checked_sum(v,3,NULL)==-1);int64_t a=0;assert(parse_amount("1",&a)==0&&a==1);assert(parse_amount("0",&a)==-1);assert(parse_amount("-1",&a)==-1);assert(parse_amount("+1",&a)==-1);assert(parse_amount("1.5",&a)==-1);assert(parse_amount("1x",&a)==-1);assert(parse_amount("",&a)==-1);assert(parse_amount(NULL,&a)==-1);assert(parse_amount("999999999999999999999999",&a)==-1);char *digits=malloc(1000001);assert(digits);memset(digits,'9',1000000);digits[1000000]='\0';assert(parse_amount(digits,&a)==-1);free(digits);puts("C boundary tests passed");}
