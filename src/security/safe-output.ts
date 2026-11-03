@@ -1,0 +1,2 @@
+export const publicUser=(u:{id:string;first_name:string;middle_name:string|null;last_name:string;email:string|null;phone:string|null;status:string})=>({id:u.id,firstName:u.first_name,middleName:u.middle_name,lastName:u.last_name,email:u.email,phone:u.phone,status:u.status});
+export const publicTransaction=(t:{id:string;reference:string;type:string;status:string;amount:bigint;currency_code:string;created_at:Date})=>({id:t.id,reference:t.reference,type:t.type,status:t.status,amountMinor:t.amount.toString(),currency:t.currency_code,createdAt:t.created_at.toISOString()});
