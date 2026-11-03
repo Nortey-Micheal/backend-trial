@@ -1254,3 +1254,21 @@ Do not implement all 20-plus entities and every endpoint at once. Build a workin
 Your first major milestone should be the ledger and internal transfer engine. Once you can demonstrate that two customers can transfer simulated funds safely, that concurrent requests cannot overspend balances, and that every posted journal balances, you will have established the most technically demanding foundation of the project.
 
 One final distinction: this specification describes a serious educational mobile-money simulator. A real banking deployment would additionally require a much broader security assessment, operational resilience, regulatory compliance, financial controls, and independent review before handling actual customer funds.
+
+## Week 2 — Input-handling kit
+
+- Zod schemas validate registration, login, transfer, pagination, and idempotency-key input. Unknown object properties are rejected.
+- Express validation middleware returns generic client errors without exposing schema internals.
+- Authentication routes apply the registration and login schemas before controller execution.
+- Prisma data-access examples use structured filters and bounded pagination; user-controlled values are never interpolated into raw SQL.
+- Public response projections explicitly select fields and serialize monetary BigInts as strings.
+- Negative tests cover malformed identifiers, wrong types, oversized values, Unicode/markup-like input, extra properties, and boundary conditions. Run with `npm test`.
+- Semgrep rules are in `semgrep.yml`; run with `npm run security:semgrep` after installing the Semgrep CLI.
+
+## Week 3 — Sanitizer drill
+
+Three standalone C exercises are provided in `c-exercises/`: bounded copying, overflow-checked summation, and strict positive-integer parsing. The boundary harness includes empty, exact/over-capacity, null, maximum-range, overflow, and very large input cases. Run `npm run security:c` on a machine with a C compiler that supports AddressSanitizer and UndefinedBehaviorSanitizer. The bounded-copy function is ported to Rust in `rust-port/`; run `npm run security:rust` with Cargo installed.
+
+**Exercise provenance:** the repository did not contain the three C source exercises referenced in the assignment. These are newly written representative exercises so the sanitizer workflow is executable; replace them with the instructor-supplied C files if those are the intended originals.
+
+**Verification note:** the source and test harnesses have been committed, but compilation, TypeScript tests, Semgrep, and sanitizer execution must be run in the project environment before claiming a clean pass. The repository connector cannot execute the local toolchain.
