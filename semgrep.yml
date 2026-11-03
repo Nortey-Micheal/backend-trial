@@ -1,0 +1,15 @@
+rules:
+  - id: no-unsafe-prisma-raw
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: Use Prisma structured queries or parameterized $queryRaw; never unsafe raw SQL.
+    pattern-either:
+      - pattern: $DB.$queryRawUnsafe(...)
+      - pattern: $DB.$executeRawUnsafe(...)
+  - id: no-auth-secret-logging
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: Never log verification codes, passwords, access tokens or secrets.
+    pattern-either:
+      - pattern: console.log(..., $SECRET, ...)
+      - pattern: console.info(..., $SECRET, ...)

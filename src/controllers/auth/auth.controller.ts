@@ -72,11 +72,12 @@ export const register = async (req: Request, res: Response) => {
     const hashedPassword = await bcrypt.hash(password, 12)
     const verification_code = randomInt(100000, 1000000);
 
-    const hashedVerificationCode = createHmac('sha256', process.env.OTP_SECRET!)
+    const otpSecret = process.env.OTP_SECRET
+    if (!otpSecret) throw new Error('OTP_SECRET is not configured')
+    const hashedVerificationCode = createHmac('sha256', otpSecret)
       .update(verification_code.toString())
       .digest('hex');
 
-    console.log('Test verification code:', verification_code);
 
     const expireDate = new Date(Date.now() + 15 * 60 * 1000);
 
